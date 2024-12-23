@@ -1,4 +1,6 @@
+import 'package:dtt/core/app_config.dart';
 import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/utils/url_lancher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -63,7 +65,7 @@ class InfoScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Otevření odkazu v prohlížeči
+                            UrlLauncher.launchURL(AppConfig.dttWebUrl);
                           },
                           child: const Text(
                             'd-tt.nl',
@@ -79,9 +81,12 @@ class InfoScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 16,
+              ),
               LangListTile(locale: locale, lang: 'en', title: 'en'),
-              LangListTile(locale: locale, lang: 'cs', title: 'cz', iconCode: 'cs-CZ'),
-              LangListTile(locale: locale, lang: 'sk', title: 'sk'),
+              LangListTile(locale: locale, lang: 'cs', title: 'cz'),
+              LangListTile(locale: locale, lang: 'nl', title: 'nl'),
               SwitchListTile(
                 value: context.select((AppBloc bloc) => bloc.state.isDarkMode),
                 onChanged: (value) {
@@ -103,18 +108,16 @@ class LangListTile extends StatelessWidget {
     required this.lang,
     required this.title,
     super.key,
-    this.iconCode,
   });
 
   final String locale;
   final String lang;
   final String title;
-  final String? iconCode;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+      padding: const EdgeInsets.only(bottom: 10),
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -122,11 +125,6 @@ class LangListTile extends StatelessWidget {
         ),
         child: RadioListTile<String>(
           dense: true,
-          // secondary: CountryFlag.fromLanguageCode(
-          //   iconCode ?? lang,
-          //   width: 41,
-          //   height: 24,
-          // ),
           value: lang,
           groupValue: locale,
           controlAffinity: ListTileControlAffinity.trailing,

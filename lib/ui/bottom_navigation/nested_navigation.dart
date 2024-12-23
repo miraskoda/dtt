@@ -1,5 +1,6 @@
+import 'package:dtt/core/constants/constants.dart';
+import 'package:dtt/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class NestedNavigation extends StatelessWidget {
@@ -15,26 +16,21 @@ class NestedNavigation extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
-        indicatorColor: Colors.transparent,
-        height: 40,
+        height: AppConstants.bottomNavbarHeight,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         selectedIndex: navigationShell.currentIndex,
         destinations: [
           NavigationDestination(
-              label: 'Home',
+              label: 'home',
               icon: Opacity(
                 opacity: 0 == navigationShell.currentIndex ? 1 : 0.2,
-                child: SvgPicture.asset(
-                  "assets/icons/ic_home.svg",
-                ),
+                child: Assets.icons.icHome.svg(),
               )),
           NavigationDestination(
-              label: 'Info',
+              label: 'info',
               icon: Opacity(
                 opacity: 1 == navigationShell.currentIndex ? 1 : 0.2,
-                child: SvgPicture.asset(
-                  "assets/icons/ic_info.svg",
-                ),
+                child: Assets.icons.icInfo.svg(),
               )),
         ],
         onDestinationSelected: (i) => navigationShell.goBranch(

@@ -1,3 +1,4 @@
+import 'package:dtt/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 
 class AppThemes {
@@ -146,6 +147,7 @@ class AppThemes {
     scaffoldBackgroundColor: _lightBackgroundColor,
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: Colors.white,
+      indicatorColor: Colors.transparent,
     ),
     appBarTheme: AppBarTheme(
       color: _lightBackgroundColor,
@@ -157,7 +159,7 @@ class AppThemes {
       color: _lightIconColor,
     ),
     textTheme: _lightTextTheme,
-    fontFamily: 'GothamSSm',
+    fontFamily: FontFamily.gothamSSm,
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: primaryOne,
       selectionColor: primaryOne,
@@ -214,6 +216,9 @@ class AppThemes {
       thumbColor: WidgetStateProperty.all(secondaryOne),
       trackColor: WidgetStateProperty.all(primaryOne),
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      indicatorColor: Colors.transparent,
+    ),
     radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(primaryOne)),
     unselectedWidgetColor: Colors.white,
     progressIndicatorTheme: const ProgressIndicatorThemeData(color: primaryOne),
@@ -229,7 +234,7 @@ class AppThemes {
     iconTheme: const IconThemeData(
       color: _darkIconColor,
     ),
-    fontFamily: 'GothamSSm',
+    fontFamily: FontFamily.gothamSSm,
     textTheme: _darkTextTheme,
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: primaryOne,
