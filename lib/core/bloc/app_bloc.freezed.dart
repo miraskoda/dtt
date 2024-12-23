@@ -20,30 +20,21 @@ mixin _$AppEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(String locale) localeChanged,
-    required TResult Function(String? savedBookId) savedBookIdChanged,
-    required TResult Function() disableFirstUse,
     required TResult Function() darkModeChanged,
-    required TResult Function(double aspectRatio) setAspectRatio,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(String locale)? localeChanged,
-    TResult? Function(String? savedBookId)? savedBookIdChanged,
-    TResult? Function()? disableFirstUse,
     TResult? Function()? darkModeChanged,
-    TResult? Function(double aspectRatio)? setAspectRatio,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(String locale)? localeChanged,
-    TResult Function(String? savedBookId)? savedBookIdChanged,
-    TResult Function()? disableFirstUse,
     TResult Function()? darkModeChanged,
-    TResult Function(double aspectRatio)? setAspectRatio,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,30 +42,21 @@ mixin _$AppEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LocaleChanged value) localeChanged,
-    required TResult Function(_SavedBookIdChanged value) savedBookIdChanged,
-    required TResult Function(_DisableFirstUse value) disableFirstUse,
     required TResult Function(_DarkModeChanged value) darkModeChanged,
-    required TResult Function(_SetAspectRatio value) setAspectRatio,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_LocaleChanged value)? localeChanged,
-    TResult? Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult? Function(_DisableFirstUse value)? disableFirstUse,
     TResult? Function(_DarkModeChanged value)? darkModeChanged,
-    TResult? Function(_SetAspectRatio value)? setAspectRatio,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LocaleChanged value)? localeChanged,
-    TResult Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult Function(_DisableFirstUse value)? disableFirstUse,
     TResult Function(_DarkModeChanged value)? darkModeChanged,
-    TResult Function(_SetAspectRatio value)? setAspectRatio,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -95,6 +77,9 @@ class _$AppEventCopyWithImpl<$Res, $Val extends AppEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -111,6 +96,9 @@ class __$$LoadedImplCopyWithImpl<$Res>
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -137,10 +125,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(String locale) localeChanged,
-    required TResult Function(String? savedBookId) savedBookIdChanged,
-    required TResult Function() disableFirstUse,
     required TResult Function() darkModeChanged,
-    required TResult Function(double aspectRatio) setAspectRatio,
   }) {
     return loaded();
   }
@@ -150,10 +135,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(String locale)? localeChanged,
-    TResult? Function(String? savedBookId)? savedBookIdChanged,
-    TResult? Function()? disableFirstUse,
     TResult? Function()? darkModeChanged,
-    TResult? Function(double aspectRatio)? setAspectRatio,
   }) {
     return loaded?.call();
   }
@@ -163,10 +145,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(String locale)? localeChanged,
-    TResult Function(String? savedBookId)? savedBookIdChanged,
-    TResult Function()? disableFirstUse,
     TResult Function()? darkModeChanged,
-    TResult Function(double aspectRatio)? setAspectRatio,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -180,10 +159,7 @@ class _$LoadedImpl implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LocaleChanged value) localeChanged,
-    required TResult Function(_SavedBookIdChanged value) savedBookIdChanged,
-    required TResult Function(_DisableFirstUse value) disableFirstUse,
     required TResult Function(_DarkModeChanged value) darkModeChanged,
-    required TResult Function(_SetAspectRatio value) setAspectRatio,
   }) {
     return loaded(this);
   }
@@ -193,10 +169,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_LocaleChanged value)? localeChanged,
-    TResult? Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult? Function(_DisableFirstUse value)? disableFirstUse,
     TResult? Function(_DarkModeChanged value)? darkModeChanged,
-    TResult? Function(_SetAspectRatio value)? setAspectRatio,
   }) {
     return loaded?.call(this);
   }
@@ -206,10 +179,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LocaleChanged value)? localeChanged,
-    TResult Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult Function(_DisableFirstUse value)? disableFirstUse,
     TResult Function(_DarkModeChanged value)? darkModeChanged,
-    TResult Function(_SetAspectRatio value)? setAspectRatio,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -240,6 +210,8 @@ class __$$LocaleChangedImplCopyWithImpl<$Res>
       _$LocaleChangedImpl _value, $Res Function(_$LocaleChangedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -278,7 +250,9 @@ class _$LocaleChangedImpl implements _LocaleChanged {
   @override
   int get hashCode => Object.hash(runtimeType, locale);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocaleChangedImplCopyWith<_$LocaleChangedImpl> get copyWith =>
@@ -289,10 +263,7 @@ class _$LocaleChangedImpl implements _LocaleChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(String locale) localeChanged,
-    required TResult Function(String? savedBookId) savedBookIdChanged,
-    required TResult Function() disableFirstUse,
     required TResult Function() darkModeChanged,
-    required TResult Function(double aspectRatio) setAspectRatio,
   }) {
     return localeChanged(locale);
   }
@@ -302,10 +273,7 @@ class _$LocaleChangedImpl implements _LocaleChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(String locale)? localeChanged,
-    TResult? Function(String? savedBookId)? savedBookIdChanged,
-    TResult? Function()? disableFirstUse,
     TResult? Function()? darkModeChanged,
-    TResult? Function(double aspectRatio)? setAspectRatio,
   }) {
     return localeChanged?.call(locale);
   }
@@ -315,10 +283,7 @@ class _$LocaleChangedImpl implements _LocaleChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(String locale)? localeChanged,
-    TResult Function(String? savedBookId)? savedBookIdChanged,
-    TResult Function()? disableFirstUse,
     TResult Function()? darkModeChanged,
-    TResult Function(double aspectRatio)? setAspectRatio,
     required TResult orElse(),
   }) {
     if (localeChanged != null) {
@@ -332,10 +297,7 @@ class _$LocaleChangedImpl implements _LocaleChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LocaleChanged value) localeChanged,
-    required TResult Function(_SavedBookIdChanged value) savedBookIdChanged,
-    required TResult Function(_DisableFirstUse value) disableFirstUse,
     required TResult Function(_DarkModeChanged value) darkModeChanged,
-    required TResult Function(_SetAspectRatio value) setAspectRatio,
   }) {
     return localeChanged(this);
   }
@@ -345,10 +307,7 @@ class _$LocaleChangedImpl implements _LocaleChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_LocaleChanged value)? localeChanged,
-    TResult? Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult? Function(_DisableFirstUse value)? disableFirstUse,
     TResult? Function(_DarkModeChanged value)? darkModeChanged,
-    TResult? Function(_SetAspectRatio value)? setAspectRatio,
   }) {
     return localeChanged?.call(this);
   }
@@ -358,10 +317,7 @@ class _$LocaleChangedImpl implements _LocaleChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LocaleChanged value)? localeChanged,
-    TResult Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult Function(_DisableFirstUse value)? disableFirstUse,
     TResult Function(_DarkModeChanged value)? darkModeChanged,
-    TResult Function(_SetAspectRatio value)? setAspectRatio,
     required TResult orElse(),
   }) {
     if (localeChanged != null) {
@@ -376,295 +332,12 @@ abstract class _LocaleChanged implements AppEvent {
       _$LocaleChangedImpl;
 
   String get locale;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocaleChangedImplCopyWith<_$LocaleChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SavedBookIdChangedImplCopyWith<$Res> {
-  factory _$$SavedBookIdChangedImplCopyWith(_$SavedBookIdChangedImpl value,
-          $Res Function(_$SavedBookIdChangedImpl) then) =
-      __$$SavedBookIdChangedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? savedBookId});
-}
-
-/// @nodoc
-class __$$SavedBookIdChangedImplCopyWithImpl<$Res>
-    extends _$AppEventCopyWithImpl<$Res, _$SavedBookIdChangedImpl>
-    implements _$$SavedBookIdChangedImplCopyWith<$Res> {
-  __$$SavedBookIdChangedImplCopyWithImpl(_$SavedBookIdChangedImpl _value,
-      $Res Function(_$SavedBookIdChangedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? savedBookId = freezed,
-  }) {
-    return _then(_$SavedBookIdChangedImpl(
-      savedBookId: freezed == savedBookId
-          ? _value.savedBookId
-          : savedBookId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SavedBookIdChangedImpl implements _SavedBookIdChanged {
-  const _$SavedBookIdChangedImpl({required this.savedBookId});
-
-  @override
-  final String? savedBookId;
-
-  @override
-  String toString() {
-    return 'AppEvent.savedBookIdChanged(savedBookId: $savedBookId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SavedBookIdChangedImpl &&
-            (identical(other.savedBookId, savedBookId) ||
-                other.savedBookId == savedBookId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, savedBookId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SavedBookIdChangedImplCopyWith<_$SavedBookIdChangedImpl> get copyWith =>
-      __$$SavedBookIdChangedImplCopyWithImpl<_$SavedBookIdChangedImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
-    required TResult Function(String locale) localeChanged,
-    required TResult Function(String? savedBookId) savedBookIdChanged,
-    required TResult Function() disableFirstUse,
-    required TResult Function() darkModeChanged,
-    required TResult Function(double aspectRatio) setAspectRatio,
-  }) {
-    return savedBookIdChanged(savedBookId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
-    TResult? Function(String locale)? localeChanged,
-    TResult? Function(String? savedBookId)? savedBookIdChanged,
-    TResult? Function()? disableFirstUse,
-    TResult? Function()? darkModeChanged,
-    TResult? Function(double aspectRatio)? setAspectRatio,
-  }) {
-    return savedBookIdChanged?.call(savedBookId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
-    TResult Function(String locale)? localeChanged,
-    TResult Function(String? savedBookId)? savedBookIdChanged,
-    TResult Function()? disableFirstUse,
-    TResult Function()? darkModeChanged,
-    TResult Function(double aspectRatio)? setAspectRatio,
-    required TResult orElse(),
-  }) {
-    if (savedBookIdChanged != null) {
-      return savedBookIdChanged(savedBookId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LocaleChanged value) localeChanged,
-    required TResult Function(_SavedBookIdChanged value) savedBookIdChanged,
-    required TResult Function(_DisableFirstUse value) disableFirstUse,
-    required TResult Function(_DarkModeChanged value) darkModeChanged,
-    required TResult Function(_SetAspectRatio value) setAspectRatio,
-  }) {
-    return savedBookIdChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LocaleChanged value)? localeChanged,
-    TResult? Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult? Function(_DisableFirstUse value)? disableFirstUse,
-    TResult? Function(_DarkModeChanged value)? darkModeChanged,
-    TResult? Function(_SetAspectRatio value)? setAspectRatio,
-  }) {
-    return savedBookIdChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LocaleChanged value)? localeChanged,
-    TResult Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult Function(_DisableFirstUse value)? disableFirstUse,
-    TResult Function(_DarkModeChanged value)? darkModeChanged,
-    TResult Function(_SetAspectRatio value)? setAspectRatio,
-    required TResult orElse(),
-  }) {
-    if (savedBookIdChanged != null) {
-      return savedBookIdChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SavedBookIdChanged implements AppEvent {
-  const factory _SavedBookIdChanged({required final String? savedBookId}) =
-      _$SavedBookIdChangedImpl;
-
-  String? get savedBookId;
-  @JsonKey(ignore: true)
-  _$$SavedBookIdChangedImplCopyWith<_$SavedBookIdChangedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DisableFirstUseImplCopyWith<$Res> {
-  factory _$$DisableFirstUseImplCopyWith(_$DisableFirstUseImpl value,
-          $Res Function(_$DisableFirstUseImpl) then) =
-      __$$DisableFirstUseImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DisableFirstUseImplCopyWithImpl<$Res>
-    extends _$AppEventCopyWithImpl<$Res, _$DisableFirstUseImpl>
-    implements _$$DisableFirstUseImplCopyWith<$Res> {
-  __$$DisableFirstUseImplCopyWithImpl(
-      _$DisableFirstUseImpl _value, $Res Function(_$DisableFirstUseImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$DisableFirstUseImpl implements _DisableFirstUse {
-  const _$DisableFirstUseImpl();
-
-  @override
-  String toString() {
-    return 'AppEvent.disableFirstUse()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DisableFirstUseImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
-    required TResult Function(String locale) localeChanged,
-    required TResult Function(String? savedBookId) savedBookIdChanged,
-    required TResult Function() disableFirstUse,
-    required TResult Function() darkModeChanged,
-    required TResult Function(double aspectRatio) setAspectRatio,
-  }) {
-    return disableFirstUse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
-    TResult? Function(String locale)? localeChanged,
-    TResult? Function(String? savedBookId)? savedBookIdChanged,
-    TResult? Function()? disableFirstUse,
-    TResult? Function()? darkModeChanged,
-    TResult? Function(double aspectRatio)? setAspectRatio,
-  }) {
-    return disableFirstUse?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
-    TResult Function(String locale)? localeChanged,
-    TResult Function(String? savedBookId)? savedBookIdChanged,
-    TResult Function()? disableFirstUse,
-    TResult Function()? darkModeChanged,
-    TResult Function(double aspectRatio)? setAspectRatio,
-    required TResult orElse(),
-  }) {
-    if (disableFirstUse != null) {
-      return disableFirstUse();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LocaleChanged value) localeChanged,
-    required TResult Function(_SavedBookIdChanged value) savedBookIdChanged,
-    required TResult Function(_DisableFirstUse value) disableFirstUse,
-    required TResult Function(_DarkModeChanged value) darkModeChanged,
-    required TResult Function(_SetAspectRatio value) setAspectRatio,
-  }) {
-    return disableFirstUse(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LocaleChanged value)? localeChanged,
-    TResult? Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult? Function(_DisableFirstUse value)? disableFirstUse,
-    TResult? Function(_DarkModeChanged value)? darkModeChanged,
-    TResult? Function(_SetAspectRatio value)? setAspectRatio,
-  }) {
-    return disableFirstUse?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LocaleChanged value)? localeChanged,
-    TResult Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult Function(_DisableFirstUse value)? disableFirstUse,
-    TResult Function(_DarkModeChanged value)? darkModeChanged,
-    TResult Function(_SetAspectRatio value)? setAspectRatio,
-    required TResult orElse(),
-  }) {
-    if (disableFirstUse != null) {
-      return disableFirstUse(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DisableFirstUse implements AppEvent {
-  const factory _DisableFirstUse() = _$DisableFirstUseImpl;
 }
 
 /// @nodoc
@@ -681,6 +354,9 @@ class __$$DarkModeChangedImplCopyWithImpl<$Res>
   __$$DarkModeChangedImplCopyWithImpl(
       _$DarkModeChangedImpl _value, $Res Function(_$DarkModeChangedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -707,10 +383,7 @@ class _$DarkModeChangedImpl implements _DarkModeChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function(String locale) localeChanged,
-    required TResult Function(String? savedBookId) savedBookIdChanged,
-    required TResult Function() disableFirstUse,
     required TResult Function() darkModeChanged,
-    required TResult Function(double aspectRatio) setAspectRatio,
   }) {
     return darkModeChanged();
   }
@@ -720,10 +393,7 @@ class _$DarkModeChangedImpl implements _DarkModeChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function(String locale)? localeChanged,
-    TResult? Function(String? savedBookId)? savedBookIdChanged,
-    TResult? Function()? disableFirstUse,
     TResult? Function()? darkModeChanged,
-    TResult? Function(double aspectRatio)? setAspectRatio,
   }) {
     return darkModeChanged?.call();
   }
@@ -733,10 +403,7 @@ class _$DarkModeChangedImpl implements _DarkModeChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function(String locale)? localeChanged,
-    TResult Function(String? savedBookId)? savedBookIdChanged,
-    TResult Function()? disableFirstUse,
     TResult Function()? darkModeChanged,
-    TResult Function(double aspectRatio)? setAspectRatio,
     required TResult orElse(),
   }) {
     if (darkModeChanged != null) {
@@ -750,10 +417,7 @@ class _$DarkModeChangedImpl implements _DarkModeChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_LocaleChanged value) localeChanged,
-    required TResult Function(_SavedBookIdChanged value) savedBookIdChanged,
-    required TResult Function(_DisableFirstUse value) disableFirstUse,
     required TResult Function(_DarkModeChanged value) darkModeChanged,
-    required TResult Function(_SetAspectRatio value) setAspectRatio,
   }) {
     return darkModeChanged(this);
   }
@@ -763,10 +427,7 @@ class _$DarkModeChangedImpl implements _DarkModeChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_LocaleChanged value)? localeChanged,
-    TResult? Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult? Function(_DisableFirstUse value)? disableFirstUse,
     TResult? Function(_DarkModeChanged value)? darkModeChanged,
-    TResult? Function(_SetAspectRatio value)? setAspectRatio,
   }) {
     return darkModeChanged?.call(this);
   }
@@ -776,10 +437,7 @@ class _$DarkModeChangedImpl implements _DarkModeChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
     TResult Function(_LocaleChanged value)? localeChanged,
-    TResult Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult Function(_DisableFirstUse value)? disableFirstUse,
     TResult Function(_DarkModeChanged value)? darkModeChanged,
-    TResult Function(_SetAspectRatio value)? setAspectRatio,
     required TResult orElse(),
   }) {
     if (darkModeChanged != null) {
@@ -794,174 +452,14 @@ abstract class _DarkModeChanged implements AppEvent {
 }
 
 /// @nodoc
-abstract class _$$SetAspectRatioImplCopyWith<$Res> {
-  factory _$$SetAspectRatioImplCopyWith(_$SetAspectRatioImpl value,
-          $Res Function(_$SetAspectRatioImpl) then) =
-      __$$SetAspectRatioImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({double aspectRatio});
-}
-
-/// @nodoc
-class __$$SetAspectRatioImplCopyWithImpl<$Res>
-    extends _$AppEventCopyWithImpl<$Res, _$SetAspectRatioImpl>
-    implements _$$SetAspectRatioImplCopyWith<$Res> {
-  __$$SetAspectRatioImplCopyWithImpl(
-      _$SetAspectRatioImpl _value, $Res Function(_$SetAspectRatioImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? aspectRatio = null,
-  }) {
-    return _then(_$SetAspectRatioImpl(
-      null == aspectRatio
-          ? _value.aspectRatio
-          : aspectRatio // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SetAspectRatioImpl implements _SetAspectRatio {
-  const _$SetAspectRatioImpl(this.aspectRatio);
-
-  @override
-  final double aspectRatio;
-
-  @override
-  String toString() {
-    return 'AppEvent.setAspectRatio(aspectRatio: $aspectRatio)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SetAspectRatioImpl &&
-            (identical(other.aspectRatio, aspectRatio) ||
-                other.aspectRatio == aspectRatio));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, aspectRatio);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetAspectRatioImplCopyWith<_$SetAspectRatioImpl> get copyWith =>
-      __$$SetAspectRatioImplCopyWithImpl<_$SetAspectRatioImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
-    required TResult Function(String locale) localeChanged,
-    required TResult Function(String? savedBookId) savedBookIdChanged,
-    required TResult Function() disableFirstUse,
-    required TResult Function() darkModeChanged,
-    required TResult Function(double aspectRatio) setAspectRatio,
-  }) {
-    return setAspectRatio(aspectRatio);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
-    TResult? Function(String locale)? localeChanged,
-    TResult? Function(String? savedBookId)? savedBookIdChanged,
-    TResult? Function()? disableFirstUse,
-    TResult? Function()? darkModeChanged,
-    TResult? Function(double aspectRatio)? setAspectRatio,
-  }) {
-    return setAspectRatio?.call(aspectRatio);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
-    TResult Function(String locale)? localeChanged,
-    TResult Function(String? savedBookId)? savedBookIdChanged,
-    TResult Function()? disableFirstUse,
-    TResult Function()? darkModeChanged,
-    TResult Function(double aspectRatio)? setAspectRatio,
-    required TResult orElse(),
-  }) {
-    if (setAspectRatio != null) {
-      return setAspectRatio(aspectRatio);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_LocaleChanged value) localeChanged,
-    required TResult Function(_SavedBookIdChanged value) savedBookIdChanged,
-    required TResult Function(_DisableFirstUse value) disableFirstUse,
-    required TResult Function(_DarkModeChanged value) darkModeChanged,
-    required TResult Function(_SetAspectRatio value) setAspectRatio,
-  }) {
-    return setAspectRatio(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_LocaleChanged value)? localeChanged,
-    TResult? Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult? Function(_DisableFirstUse value)? disableFirstUse,
-    TResult? Function(_DarkModeChanged value)? darkModeChanged,
-    TResult? Function(_SetAspectRatio value)? setAspectRatio,
-  }) {
-    return setAspectRatio?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_LocaleChanged value)? localeChanged,
-    TResult Function(_SavedBookIdChanged value)? savedBookIdChanged,
-    TResult Function(_DisableFirstUse value)? disableFirstUse,
-    TResult Function(_DarkModeChanged value)? darkModeChanged,
-    TResult Function(_SetAspectRatio value)? setAspectRatio,
-    required TResult orElse(),
-  }) {
-    if (setAspectRatio != null) {
-      return setAspectRatio(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SetAspectRatio implements AppEvent {
-  const factory _SetAspectRatio(final double aspectRatio) =
-      _$SetAspectRatioImpl;
-
-  double get aspectRatio;
-  @JsonKey(ignore: true)
-  _$$SetAspectRatioImplCopyWith<_$SetAspectRatioImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$AppState {
   UIStatus get status => throw _privateConstructorUsedError;
   String get locale => throw _privateConstructorUsedError;
   bool get isDarkMode => throw _privateConstructorUsedError;
-  bool get isFirstUse => throw _privateConstructorUsedError;
-  String? get savedBookId => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppStateCopyWith<AppState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -971,12 +469,7 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call(
-      {UIStatus status,
-      String locale,
-      bool isDarkMode,
-      bool isFirstUse,
-      String? savedBookId});
+  $Res call({UIStatus status, String locale, bool isDarkMode});
 
   $UIStatusCopyWith<$Res> get status;
 }
@@ -991,14 +484,14 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
     Object? locale = null,
     Object? isDarkMode = null,
-    Object? isFirstUse = null,
-    Object? savedBookId = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -1013,17 +506,11 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isDarkMode
           : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
-      isFirstUse: null == isFirstUse
-          ? _value.isFirstUse
-          : isFirstUse // ignore: cast_nullable_to_non_nullable
-              as bool,
-      savedBookId: freezed == savedBookId
-          ? _value.savedBookId
-          : savedBookId // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UIStatusCopyWith<$Res> get status {
@@ -1041,12 +528,7 @@ abstract class _$$AppStateImplCopyWith<$Res>
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {UIStatus status,
-      String locale,
-      bool isDarkMode,
-      bool isFirstUse,
-      String? savedBookId});
+  $Res call({UIStatus status, String locale, bool isDarkMode});
 
   @override
   $UIStatusCopyWith<$Res> get status;
@@ -1060,14 +542,14 @@ class __$$AppStateImplCopyWithImpl<$Res>
       _$AppStateImpl _value, $Res Function(_$AppStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
     Object? locale = null,
     Object? isDarkMode = null,
-    Object? isFirstUse = null,
-    Object? savedBookId = freezed,
   }) {
     return _then(_$AppStateImpl(
       status: null == status
@@ -1082,14 +564,6 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.isDarkMode
           : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
-      isFirstUse: null == isFirstUse
-          ? _value.isFirstUse
-          : isFirstUse // ignore: cast_nullable_to_non_nullable
-              as bool,
-      savedBookId: freezed == savedBookId
-          ? _value.savedBookId
-          : savedBookId // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -1100,9 +574,7 @@ class _$AppStateImpl implements _AppState {
   const _$AppStateImpl(
       {this.status = const UIInitial(),
       this.locale = AppConfig.defaultLocale,
-      this.isDarkMode = true,
-      this.isFirstUse = true,
-      this.savedBookId});
+      this.isDarkMode = true});
 
   @override
   @JsonKey()
@@ -1113,15 +585,10 @@ class _$AppStateImpl implements _AppState {
   @override
   @JsonKey()
   final bool isDarkMode;
-  @override
-  @JsonKey()
-  final bool isFirstUse;
-  @override
-  final String? savedBookId;
 
   @override
   String toString() {
-    return 'AppState(status: $status, locale: $locale, isDarkMode: $isDarkMode, isFirstUse: $isFirstUse, savedBookId: $savedBookId)';
+    return 'AppState(status: $status, locale: $locale, isDarkMode: $isDarkMode)';
   }
 
   @override
@@ -1132,18 +599,15 @@ class _$AppStateImpl implements _AppState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.locale, locale) || other.locale == locale) &&
             (identical(other.isDarkMode, isDarkMode) ||
-                other.isDarkMode == isDarkMode) &&
-            (identical(other.isFirstUse, isFirstUse) ||
-                other.isFirstUse == isFirstUse) &&
-            (identical(other.savedBookId, savedBookId) ||
-                other.savedBookId == savedBookId));
+                other.isDarkMode == isDarkMode));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, locale, isDarkMode, isFirstUse, savedBookId);
+  int get hashCode => Object.hash(runtimeType, status, locale, isDarkMode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>
@@ -1154,9 +618,7 @@ abstract class _AppState implements AppState {
   const factory _AppState(
       {final UIStatus status,
       final String locale,
-      final bool isDarkMode,
-      final bool isFirstUse,
-      final String? savedBookId}) = _$AppStateImpl;
+      final bool isDarkMode}) = _$AppStateImpl;
 
   @override
   UIStatus get status;
@@ -1164,12 +626,11 @@ abstract class _AppState implements AppState {
   String get locale;
   @override
   bool get isDarkMode;
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  bool get isFirstUse;
-  @override
-  String? get savedBookId;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

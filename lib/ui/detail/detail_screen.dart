@@ -1,4 +1,5 @@
 import 'package:dtt/api/models/house.dart';
+import 'package:dtt/core/extensions/app_extensions.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -11,17 +12,13 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('DTT REAL ESTATE'),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 1,
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Obrázek nemovitosti
             Image.network(
-              house.image,
+              house.image.asDttImage(),
               width: double.infinity,
               height: 200,
               fit: BoxFit.cover,

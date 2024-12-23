@@ -144,6 +144,9 @@ class AppThemes {
     brightness: Brightness.light,
     primaryColor: _lightPrimaryColor,
     scaffoldBackgroundColor: _lightBackgroundColor,
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: Colors.white,
+    ),
     appBarTheme: AppBarTheme(
       color: _lightBackgroundColor,
       iconTheme: const IconThemeData(color: _lightIconColor),
@@ -154,6 +157,7 @@ class AppThemes {
       color: _lightIconColor,
     ),
     textTheme: _lightTextTheme,
+    fontFamily: 'GothamSSm',
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: primaryOne,
       selectionColor: primaryOne,
@@ -225,6 +229,7 @@ class AppThemes {
     iconTheme: const IconThemeData(
       color: _darkIconColor,
     ),
+    fontFamily: 'GothamSSm',
     textTheme: _darkTextTheme,
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: primaryOne,

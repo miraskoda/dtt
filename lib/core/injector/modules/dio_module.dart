@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:dtt/core/app_config.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -11,7 +10,6 @@ import '../injector.dart';
 class DioModule {
   DioModule._();
 
-  static const String dioInstanceName = 'dioInstance';
   static final GetIt _injector = Injector.instance;
 
   static void setup() {
@@ -41,7 +39,6 @@ class DioModule {
         }
         return dio;
       },
-      instanceName: dioInstanceName,
     );
   }
 }

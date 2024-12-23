@@ -338,6 +338,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed:
+    dependency: "direct dev"
+    description:
+      name: freezed
+      sha256: "44c19278dd9d89292cf46e97dc0c1e52ce03275f40a97c5a348e802a924bf40e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.7"
   freezed_annotation:
     dependency: "direct main"
     description:
@@ -354,6 +362,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  get:
+    dependency: transitive
+    description:
+      name: get
+      sha256: e4e7335ede17452b391ed3b2ede016545706c01a02292a6c97619705e7d2a85e
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.6.6"
   get_it:
     dependency: "direct main"
     description:
@@ -863,6 +879,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  snackbar:
+    dependency: "direct main"
+    description:
+      name: snackbar
+      sha256: "614c81d5d73e00eac5b89931e17b7cf2f103827941e222266f36701d5afa395f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   source_gen:
     dependency: transitive
     description:

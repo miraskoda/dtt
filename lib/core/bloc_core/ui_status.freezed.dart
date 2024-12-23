@@ -83,6 +83,9 @@ class _$UIStatusCopyWithImpl<$Res, $Val extends UIStatus>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -99,6 +102,9 @@ class __$$UIInitialImplCopyWithImpl<$Res>
   __$$UIInitialImplCopyWithImpl(
       _$UIInitialImpl _value, $Res Function(_$UIInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -213,6 +219,9 @@ class __$$UILoadingImplCopyWithImpl<$Res>
   __$$UILoadingImplCopyWithImpl(
       _$UILoadingImpl _value, $Res Function(_$UILoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -330,6 +339,8 @@ class __$$UILoadFailedImplCopyWithImpl<$Res>
       _$UILoadFailedImpl _value, $Res Function(_$UILoadFailedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -368,7 +379,9 @@ class _$UILoadFailedImpl implements UILoadFailed {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UILoadFailedImplCopyWith<_$UILoadFailedImpl> get copyWith =>
@@ -454,7 +467,10 @@ abstract class UILoadFailed implements UIStatus {
       _$UILoadFailedImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UILoadFailedImplCopyWith<_$UILoadFailedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -476,6 +492,8 @@ class __$$UILoadSuccessImplCopyWithImpl<$Res>
       _$UILoadSuccessImpl _value, $Res Function(_$UILoadSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -514,7 +532,9 @@ class _$UILoadSuccessImpl implements UILoadSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UILoadSuccessImplCopyWith<_$UILoadSuccessImpl> get copyWith =>
@@ -599,7 +619,10 @@ abstract class UILoadSuccess implements UIStatus {
   const factory UILoadSuccess({final String? message}) = _$UILoadSuccessImpl;
 
   String? get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UIStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UILoadSuccessImplCopyWith<_$UILoadSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

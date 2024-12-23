@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^6.3.1
   retrofit: ^4.4.1
   package_info_plus: ^8.1.2
+  snackbar: ^1.0.2
   # google_maps_flutter: ^2.10.0
 
 dev_dependencies:
@@ -48,6 +49,8 @@ dev_dependencies:
   build_runner: ^2.4.6
   json_serializable: ^6.6.2
   retrofit_generator: ^9.1.5
+  freezed: ^2.5.7
+
 
 flutter_gen:
   output: lib/generated/
@@ -60,22 +63,35 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/
-    - assets/svg/
+    - assets/icons/
 
-
-  # fonts:
-  #   - family: Montserrat
-  #     fonts:
-  #       - asset: assets/fonts/Montserrat-Bold.ttf
-  #         weight: 700
-  #       - asset: assets/fonts/Montserrat-SemiBold.ttf
-  #         weight: 600
-  #       - asset: assets/fonts/Montserrat-Medium.ttf
-  #         weight: 500
-  #       - asset: assets/fonts/Montserrat-Regular.ttf
-  #         weight: 400
-  #       - asset: assets/fonts/Montserrat-Light.ttf
-  #         weight: 300
+  fonts:
+    - family: GothamSSm
+      fonts:
+        - asset: assets/fonts/GothamSSm-XLight.otf
+          weight: 300
+        - asset: assets/fonts/GothamSSm-Light.otf
+          weight: 300
+        - asset: assets/fonts/GothamSSm-Book.otf
+          weight: 400
+        - asset: assets/fonts/GothamSSm-Medium.otf
+          weight: 500
+        - asset: assets/fonts/GothamSSm-Bold.otf
+          weight: 700
+        - asset: assets/fonts/GothamSSm-Black.otf
+          weight: 900
+        - asset: assets/fonts/GothamSSm-LightItalic.otf
+          style: italic
+        - asset: assets/fonts/GothamSSm-XLightItalic.otf
+          style: italic
+        - asset: assets/fonts/GothamSSm-BookItalic.otf
+          style: italic
+        - asset: assets/fonts/GothamSSm-MediumItalic.otf
+          style: italic
+        - asset: assets/fonts/GothamSSm-BoldItalic.otf
+          style: italic
+        - asset: assets/fonts/GothamSSm-BlackItalic.otf
+          style: italic
 
 flutter_intl:
   enabled: true

@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:dtt/core/app_config.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../../../core/keys/app_keys.dart';
 import '../local_storage_service/local_storage_service.dart';
@@ -12,12 +15,11 @@ class AppServiceImpl implements AppService {
 
   @override
   bool get isDarkMode =>
-      _localStorageService.getBool(key: AppKeys.darkModeKey) ?? true;
+      _localStorageService.getBool(key: AppKeys.darkModeKey) ??
+      SchedulerBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
 
   @override
-  String get locale =>
-      _localStorageService.getString(key: AppKeys.localeKey) ??
-      AppConfig.defaultLocale;
+  String get locale => _localStorageService.getString(key: AppKeys.localeKey) ?? AppConfig.defaultLocale;
 
   @override
   Future<void> setIsDarkMode({required bool darkMode}) async {
