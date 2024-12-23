@@ -1,0 +1,57 @@
+{
+  "dart.flutterSdkPath": ".fvm/versions/stable",
+  "dart.flutterSdkPaths": [
+    ".fvm/flutter_sdk"
+  ],
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+  "dart.lineLength": 120,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      120
+    ],
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always",
+      "source.organizeImports": "always"
+    }
+  },
+  "dart.maxCompletionItems": 10000,
+  "dart.maxLogLineLength": 1000,
+  "dart.debugExtensionBackendProtocol": "sse",
+  "dart.offline": false,
+  "dart.devToolsLocation": "beside",
+  "dart.doNotFormat": [
+    "**/*.g.dart",
+    "**/*.freezed.dart"
+  ],
+  "dart.renameFilesWithClasses": "prompt",
+  "explorer.autoReveal": "focusNoScroll",
+  "editor.foldingImportsByDefault": false,
+  "dart.updateImportsOnRename": true,
+  "dart.notifyAnalyzerErrors": true,
+  "dart.analysisExcludedFolders": [
+    "build",
+    "example",
+    "l10n",
+    ".fvm",
+    "bin",
+    "ci",
+    "docs",
+    "storybook",
+    "tools",
+    "widgetbook",
+    ".symlinks"
+  ],
+  "explorer.confirmDelete": true,
+  "explorer.compactFolders": false,
+  "dart.promptToGetPackages": false,
+  "dart.analysisServerFolding": false,
+  "dart.flutterOutline": true,
+  "CodeGPT.apiKey": "Anthropic"
+}

@@ -1,0 +1,81 @@
+name: dtt
+description: "DTT Real estate project"
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.2
+  get_it: ^8.0.0
+  freezed_annotation: ^2.2.0
+  dio: ^5.0.2
+  intl_utils: ^2.7.0
+  rxdart: ^0.28.0
+  logger: ^2.4.0
+  flutter_svg: ^2.0.10+1
+  go_router: ^14.1.3
+  shared_preferences: ^2.0.18
+  pretty_dio_logger: ^1.3.1
+  json_annotation: ^4.9.0
+  intl: ^0.19.0
+  dartz: ^0.10.1
+  internet_connection_checker_plus: ^2.5.0
+  collection: ^1.18.0
+  visibility_detector: ^0.4.0+2
+  device_frame_plus: ^1.2.2+1
+  shimmer: ^3.0.0
+  version: ^3.0.2
+  permission_handler: ^11.3.1
+  app_settings: ^5.1.1
+  url_launcher: ^6.3.1
+  retrofit: ^4.4.1
+  package_info_plus: ^8.1.2
+  # google_maps_flutter: ^2.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.6
+  json_serializable: ^6.6.2
+  retrofit_generator: ^9.1.5
+
+flutter_gen:
+  output: lib/generated/
+  integrations:
+    flutter_svg: true
+
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/fonts/
+    - assets/images/
+    - assets/svg/
+
+
+  # fonts:
+  #   - family: Montserrat
+  #     fonts:
+  #       - asset: assets/fonts/Montserrat-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/Montserrat-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/Montserrat-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Montserrat-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/Montserrat-Light.ttf
+  #         weight: 300
+
+flutter_intl:
+  enabled: true
