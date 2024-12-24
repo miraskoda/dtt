@@ -1,6 +1,9 @@
 import 'package:dtt/api/models/house.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
+import 'package:dtt/theme/app_themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 class DetailScreen extends StatelessWidget {
   final House house;
@@ -10,104 +13,133 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('DTT REAL ESTATE'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.network(
-              house.image.asDttImage(),
-              width: double.infinity,
-              height: 200,
-              fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Cena
-                  Text(
-                    '\$${house.price.toString()}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  // Adresa
-                  Text(
-                    house.zip,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[700],
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  // Popis
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo ligula id quam vestibulum, at aliquam ex mollis.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  // Detaily
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildDetailIcon(Icons.bed, '${house.bedrooms} Bedrooms'),
-                      _buildDetailIcon(Icons.bathtub, '${house.bathrooms} Bathrooms'),
-                      _buildDetailIcon(Icons.square_foot, '${house.size} m²'),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  // Mapa
-                  Text(
-                    'Location',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  // Container(
-                  //   height: 200,
-                  //   child: GoogleMap(
-                  //     initialCameraPosition: CameraPosition(
-                  //       target: LatLng(
-                  //         house['latitude'] as double,
-                  //         house['longitude'] as double,
-                  //       ),
-                  //       zoom: 14.0,
-                  //     ),
-                  //     markers: {
-                  //       Marker(
-                  //         markerId: MarkerId('houseLocation'),
-                  //         position: LatLng(
-                  //           house['latitude'] as double,
-                  //           house['longitude'] as double,
-                  //         ),
-                  //       ),
-                  //     },
-                  //   ),
-                  // ),
-                ],
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            stretch: true,
+            expandedHeight: 200,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              stretchModes: [StretchMode.zoomBackground],
+              background: Image.network(
+                house.image.asDttImage(),
+                fit: BoxFit.cover,
               ),
             ),
-          ],
-        ),
+          ),
+          SliverToBoxAdapter(
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '\$${house.price.toString()}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            house.zip,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[700],
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Description',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo ligula id quam vestibulum, at aliquam ex mollis.',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _buildDetailIcon(Icons.bed, '${house.bedrooms} Bedrooms'),
+                              _buildDetailIcon(Icons.bathtub, '${house.bathrooms} Bathrooms'),
+                              _buildDetailIcon(Icons.square_foot, '${house.size} m²'),
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Location',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: FlutterMap(
+                                options: MapOptions(
+                                  initialCenter: LatLng(52.370216, 4.895168), // Amsterdam
+                                  initialZoom: 10.0,
+                                ),
+                                children: [
+                                  TileLayer(
+                                    urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                    subdomains: ['a', 'b', 'c'],
+                                  ),
+                                  MarkerLayer(
+                                    markers: [
+                                      Marker(
+                                        width: 80.0,
+                                        height: 80.0,
+                                        point: LatLng(52.370216, 4.895168),
+                                        child: Icon(
+                                          Icons.location_pin,
+                                          size: 40,
+                                          color: AppThemes.brandRedColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

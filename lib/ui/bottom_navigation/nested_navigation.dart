@@ -1,7 +1,19 @@
-import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+enum NavigationItem { home, info }
+
+class Destination {
+  final String label;
+  final SvgGenImage icon;
+  const Destination(this.label, this.icon);
+}
+
+final destinations = [
+  Destination(NavigationItem.home.name, Assets.icons.icHome),
+  Destination(NavigationItem.info.name, Assets.icons.icInfo),
+];
 
 class NestedNavigation extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -16,23 +28,18 @@ class NestedNavigation extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
-        height: AppConstants.bottomNavbarHeight,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         selectedIndex: navigationShell.currentIndex,
-        destinations: [
-          NavigationDestination(
-              label: 'home',
-              icon: Opacity(
-                opacity: 0 == navigationShell.currentIndex ? 1 : 0.2,
-                child: Assets.icons.icHome.svg(),
-              )),
-          NavigationDestination(
-              label: 'info',
-              icon: Opacity(
-                opacity: 1 == navigationShell.currentIndex ? 1 : 0.2,
-                child: Assets.icons.icInfo.svg(),
-              )),
-        ],
+        destinations: destinations.map((destination) {
+          final index = destinations.indexOf(destination);
+          return NavigationDestination(
+            label: destination.label,
+            icon: Opacity(
+              opacity: navigationShell.currentIndex == index ? 1 : 0.2,
+              child: destination.icon
+                  .svg(colorFilter: ColorFilter.mode(Theme.of(context).iconTheme.color!, BlendMode.srcIn)),
+            ),
+          );
+        }).toList(),
         onDestinationSelected: (i) => navigationShell.goBranch(
           i,
           initialLocation: i == navigationShell.currentIndex,

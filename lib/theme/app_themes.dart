@@ -1,3 +1,4 @@
+import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -19,13 +20,6 @@ class AppThemes {
   //Background
   static const Color _lightBackgroundColor = Color(0xfff1f1fe);
   static const Color _darkBackgroundColor = Color(0xff161925);
-
-  //BtnColor
-  static const Color primaryOne = Color(0xffEF8753);
-  static const Color secondaryOne = Color(0xffCF4918);
-  static const Color drawerBtnColor = Color(0xffDF6835);
-  static const Color bottomBar = Color(0xff2A2A36);
-  static const Color containerBgDark = Color(0xff2A2A36);
 
   //Text
   static const Color _lightTextColor = Color(0xff000000);
@@ -118,36 +112,38 @@ class AppThemes {
     listTileTheme: const ListTileThemeData(
       tileColor: Colors.white,
       selectedColor: Colors.white,
-      selectedTileColor: secondaryOne,
+      selectedTileColor: brandRedColor,
     ),
     sliderTheme: SliderThemeData(
       showValueIndicator: ShowValueIndicator.always,
-      activeTrackColor: primaryOne,
-      inactiveTrackColor: primaryOne.withOpacity(0.3),
-      thumbColor: secondaryOne,
-      overlayColor: secondaryOne.withOpacity(0.3),
-      valueIndicatorColor: secondaryOne,
+      activeTrackColor: brandRedColor,
+      inactiveTrackColor: brandRedColor.withOpacity(0.3),
+      thumbColor: brandRedColor,
+      overlayColor: brandRedColor.withOpacity(0.3),
+      valueIndicatorColor: brandRedColor,
       valueIndicatorTextStyle: const TextStyle(
         color: Colors.white,
       ),
     ),
     checkboxTheme: CheckboxThemeData(
       checkColor: WidgetStateProperty.all(Colors.white),
-      fillColor: WidgetStateProperty.all(primaryOne),
+      fillColor: WidgetStateProperty.all(brandRedColor),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: WidgetStateProperty.all(secondaryOne),
-      trackColor: WidgetStateProperty.all(primaryOne),
+      thumbColor: WidgetStateProperty.all(brandRedColor),
+      trackColor: WidgetStateProperty.all(brandRedColor.withOpacity(0.3)),
     ),
-    radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(primaryOne)),
+    radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(brandRedColor)),
     unselectedWidgetColor: Colors.black54,
-    progressIndicatorTheme: const ProgressIndicatorThemeData(color: primaryOne),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(color: brandRedColor),
     brightness: Brightness.light,
     primaryColor: _lightPrimaryColor,
     scaffoldBackgroundColor: _lightBackgroundColor,
     navigationBarTheme: NavigationBarThemeData(
+      height: AppConstants.bottomNavbarHeight,
       backgroundColor: Colors.white,
       indicatorColor: Colors.transparent,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
     ),
     appBarTheme: AppBarTheme(
       color: _lightBackgroundColor,
@@ -161,24 +157,24 @@ class AppThemes {
     textTheme: _lightTextTheme,
     fontFamily: FontFamily.gothamSSm,
     textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: primaryOne,
-      selectionColor: primaryOne,
-      selectionHandleColor: primaryOne,
+      cursorColor: brandRedColor,
+      selectionColor: brandRedColor,
+      selectionHandleColor: brandRedColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
       labelStyle: TextStyle(
-        color: primaryOne,
+        color: brandRedColor,
       ),
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
-          color: primaryOne,
+          color: brandRedColor,
         ),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: drawerBtnColor,
+        backgroundColor: brandRedColor,
         minimumSize: const Size.fromHeight(50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -193,35 +189,37 @@ class AppThemes {
   ///Dark theme
   static final ThemeData darkTheme = ThemeData(
     listTileTheme: const ListTileThemeData(
-      tileColor: bottomBar,
+      tileColor: brandLightColor,
       selectedColor: Colors.white,
-      selectedTileColor: secondaryOne,
+      selectedTileColor: brandLightColor,
     ),
     sliderTheme: SliderThemeData(
       showValueIndicator: ShowValueIndicator.always,
-      activeTrackColor: primaryOne,
-      inactiveTrackColor: primaryOne.withOpacity(0.3),
-      thumbColor: secondaryOne,
-      overlayColor: secondaryOne.withOpacity(0.3),
-      valueIndicatorColor: secondaryOne,
+      activeTrackColor: brandRedColor,
+      inactiveTrackColor: brandRedColor.withOpacity(0.3),
+      thumbColor: brandRedColor,
+      overlayColor: brandRedColor.withOpacity(0.3),
+      valueIndicatorColor: brandRedColor,
       valueIndicatorTextStyle: const TextStyle(
         color: Colors.white,
       ),
     ),
     checkboxTheme: CheckboxThemeData(
       checkColor: WidgetStateProperty.all(Colors.white),
-      fillColor: WidgetStateProperty.all(primaryOne),
+      fillColor: WidgetStateProperty.all(brandRedColor),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: WidgetStateProperty.all(secondaryOne),
-      trackColor: WidgetStateProperty.all(primaryOne),
+      thumbColor: WidgetStateProperty.all(brandLightGray),
+      trackColor: WidgetStateProperty.all(brandLightGray.withOpacity(0.3)),
     ),
     navigationBarTheme: NavigationBarThemeData(
       indicatorColor: Colors.transparent,
+      height: AppConstants.bottomNavbarHeight,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
     ),
-    radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(primaryOne)),
+    radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(brandRedColor)),
     unselectedWidgetColor: Colors.white,
-    progressIndicatorTheme: const ProgressIndicatorThemeData(color: primaryOne),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(color: brandRedColor),
     brightness: Brightness.dark,
     primaryColor: _darkPrimaryColor,
     scaffoldBackgroundColor: _darkBackgroundColor,
@@ -237,24 +235,24 @@ class AppThemes {
     fontFamily: FontFamily.gothamSSm,
     textTheme: _darkTextTheme,
     textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: primaryOne,
-      selectionColor: primaryOne,
-      selectionHandleColor: primaryOne,
+      cursorColor: brandRedColor,
+      selectionColor: brandRedColor,
+      selectionHandleColor: brandRedColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
       labelStyle: TextStyle(
-        color: primaryOne,
+        color: brandRedColor,
       ),
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
-          color: primaryOne,
+          color: brandRedColor,
         ),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: _lightPrimaryColor,
-        backgroundColor: drawerBtnColor,
+        backgroundColor: brandRedColor,
         minimumSize: const Size.fromHeight(50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
