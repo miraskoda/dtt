@@ -1,4 +1,3 @@
-import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -140,7 +139,7 @@ class AppThemes {
     primaryColor: _lightPrimaryColor,
     scaffoldBackgroundColor: _lightBackgroundColor,
     navigationBarTheme: NavigationBarThemeData(
-      height: AppConstants.bottomNavbarHeight,
+      height: 40,
       backgroundColor: Colors.white,
       indicatorColor: Colors.transparent,
       labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
@@ -214,7 +213,7 @@ class AppThemes {
     ),
     navigationBarTheme: NavigationBarThemeData(
       indicatorColor: Colors.transparent,
-      height: AppConstants.bottomNavbarHeight,
+      height: 40,
       labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
     ),
     radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(brandRedColor)),

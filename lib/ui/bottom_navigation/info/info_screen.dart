@@ -1,5 +1,6 @@
 import 'package:dtt/core/app_config.dart';
 import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/utils/url_lancher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,7 @@ class InfoScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(AppConstants.kDefaultSpacing),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -25,15 +26,15 @@ class InfoScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppConstants.kDefaultSpacing),
               const Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: AppConstants.kDefaultSpacing),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppConstants.kDefaultSpacing),
               const Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: AppConstants.kDefaultSpacing),
               ),
               const SizedBox(height: 32),
               const Text(
@@ -43,7 +44,7 @@ class InfoScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppConstants.kDefaultSpacing),
               Row(
                 children: [
                   Expanded(
@@ -61,7 +62,7 @@ class InfoScreen extends StatelessWidget {
                       children: [
                         const Text(
                           'by DTT',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: AppConstants.kDefaultSpacing),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -70,7 +71,7 @@ class InfoScreen extends StatelessWidget {
                           child: const Text(
                             'd-tt.nl',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: AppConstants.kDefaultSpacing,
                               color: Colors.blue,
                               decoration: TextDecoration.underline,
                             ),
@@ -82,7 +83,7 @@ class InfoScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 16,
+                height: AppConstants.kDefaultSpacing,
               ),
               LangListTile(locale: locale, lang: 'en', title: 'en'),
               LangListTile(locale: locale, lang: 'cs', title: 'cz'),

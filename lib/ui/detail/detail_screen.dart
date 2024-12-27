@@ -1,17 +1,22 @@
 import 'package:dtt/api/models/house.dart';
+import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
 import 'package:dtt/theme/app_themes.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class DetailScreen extends StatelessWidget {
+  const DetailScreen({required this.house, super.key});
   final House house;
-
-  const DetailScreen({super.key, required this.house});
 
   @override
   Widget build(BuildContext context) {
+    final imageProvider = Image.network(
+      house.image.asDttImage(),
+      fit: BoxFit.cover,
+    );
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -20,19 +25,32 @@ class DetailScreen extends StatelessWidget {
             expandedHeight: 200,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              stretchModes: [StretchMode.zoomBackground],
-              background: Image.network(
-                house.image.asDttImage(),
-                fit: BoxFit.cover,
+              background: GestureDetector(
+                onTap: () {
+                  showImageViewer(
+                    context,
+                    imageProvider.image,
+                    swipeDismissible: true,
+                    doubleTapZoomable: true,
+                    closeButtonColor: AppThemes.brandRedColor,
+                  );
+                },
+                child: Hero(
+                  tag: house.id,
+                  child: imageProvider,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: ClipRRect(
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(AppConstants.kDefaultSpacing),
+                topRight: Radius.circular(AppConstants.kDefaultSpacing),
+              ),
               child: Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(AppConstants.kDefaultSpacing),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(20),
@@ -43,34 +61,34 @@ class DetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(AppConstants.kDefaultSpacing),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '\$${house.price.toString()}',
-                            style: TextStyle(
+                            '\$${house.price}',
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 24,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: AppConstants.kSmallSpacing),
                           Text(
                             house.zip,
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: AppConstants.kDefaultSpacing,
                               color: Colors.grey[700],
                             ),
                           ),
-                          SizedBox(height: 16),
-                          Text(
+                          const SizedBox(height: AppConstants.kDefaultSpacing),
+                          const Text(
                             'Description',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: AppConstants.kSmallSpacing),
                           Text(
                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo ligula id quam vestibulum, at aliquam ex mollis.',
                             style: TextStyle(
@@ -78,7 +96,7 @@ class DetailScreen extends StatelessWidget {
                               color: Colors.grey[800],
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: AppConstants.kDefaultSpacing),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -87,15 +105,15 @@ class DetailScreen extends StatelessWidget {
                               _buildDetailIcon(Icons.square_foot, '${house.size} m²'),
                             ],
                           ),
-                          SizedBox(height: 16),
-                          Text(
+                          const SizedBox(height: AppConstants.kDefaultSpacing),
+                          const Text(
                             'Location',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: AppConstants.kSmallSpacing),
                           Container(
                             height: 200,
                             decoration: BoxDecoration(
@@ -104,20 +122,19 @@ class DetailScreen extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: FlutterMap(
-                                options: MapOptions(
+                                options: const MapOptions(
                                   initialCenter: LatLng(52.370216, 4.895168), // Amsterdam
-                                  initialZoom: 10.0,
+                                  initialZoom: 10,
                                 ),
                                 children: [
                                   TileLayer(
                                     urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                    subdomains: ['a', 'b', 'c'],
                                   ),
-                                  MarkerLayer(
+                                  const MarkerLayer(
                                     markers: [
                                       Marker(
-                                        width: 80.0,
-                                        height: 80.0,
+                                        width: 80,
+                                        height: 80,
                                         point: LatLng(52.370216, 4.895168),
                                         child: Icon(
                                           Icons.location_pin,
@@ -138,7 +155,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -149,7 +166,7 @@ class DetailScreen extends StatelessWidget {
     return Column(
       children: [
         Icon(icon, size: 32, color: Colors.grey[700]),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           text,
           style: TextStyle(
