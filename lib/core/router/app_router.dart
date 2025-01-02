@@ -4,7 +4,7 @@ import 'package:dtt/ui/bottom_navigation/info/info_screen.dart';
 import 'package:dtt/ui/bottom_navigation/main/presentation/main_screen.dart';
 import 'package:dtt/ui/bottom_navigation/nested_navigation.dart';
 import 'package:dtt/ui/detail/detail_screen.dart';
-import 'package:dtt/ui/splash/splash_screen.dart';
+import 'package:dtt/ui/splash/presentation/splash_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +32,7 @@ class AppRouter {
 
   static GoRouter get router => _router;
   static final _router = GoRouter(
-    initialLocation: mainPath,
+    initialLocation: splashPath,
     debugLogDiagnostics: kDebugMode,
     redirect: (context, state) async {
       final appBloc = context.read<AppBloc>();

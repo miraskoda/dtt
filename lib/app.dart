@@ -6,7 +6,7 @@ import 'package:dtt/core/router/app_router.dart';
 import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/theme/app_themes.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
-import 'package:dtt/ui/splash/splash_screen.dart';
+import 'package:dtt/ui/splash/presentation/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
