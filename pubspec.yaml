@@ -49,6 +49,7 @@ dev_dependencies:
   json_serializable: ^6.6.2
   retrofit_generator: ^9.1.5
   freezed: ^2.5.7
+  flutter_native_splash: ^2.2.19
 
 
 flutter_gen:
