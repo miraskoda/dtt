@@ -18,6 +18,8 @@ class House {
     required this.longitude,
     required this.createdDate,
   });
+
+  factory House.fromJson(Map<String, dynamic> json) => _$HouseFromJson(json);
   final int id;
   final String image;
   final int price;
@@ -30,7 +32,5 @@ class House {
   final double latitude;
   final double longitude;
   final DateTime createdDate;
-
-  factory House.fromJson(Map<String, dynamic> json) => _$HouseFromJson(json);
   Map<String, dynamic> toJson() => _$HouseToJson(this);
 }

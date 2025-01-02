@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:dtt/api/models/house.dart';
 import 'package:retrofit/retrofit.dart';
-
-import '../models/house.dart';
 
 part 'api_client.g.dart';
 

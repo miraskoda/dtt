@@ -119,7 +119,7 @@ class AppThemes {
     ),
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.all(brandRedColor),
-      trackColor: WidgetStateProperty.all(brandRedColor.withOpacity(0.3)),
+      trackColor: WidgetStateProperty.all(brandRedColor.withValues(alpha: 0.3)),
     ),
     radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(brandRedColor)),
     unselectedWidgetColor: Colors.black54,
@@ -171,7 +171,7 @@ class AppThemes {
     ),
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.all(brandLightGray),
-      trackColor: WidgetStateProperty.all(brandLightGray.withOpacity(0.3)),
+      trackColor: WidgetStateProperty.all(brandLightGray.withValues(alpha: 0.3)),
     ),
     navigationBarTheme: const NavigationBarThemeData(
       indicatorColor: Colors.transparent,

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:dtt/app.dart';
 import 'package:dtt/core/bloc_core/bloc_observer.dart';
 import 'package:dtt/core/injector/injector.dart';
@@ -14,6 +15,7 @@ Future<void> bootstrap({
     WidgetsFlutterBinding.ensureInitialized();
 
     await callbackInitialization?.call();
+    // ignore: deprecated_member_use
     Logger.level = Level.verbose;
 
     Injector.init();
@@ -24,6 +26,6 @@ Future<void> bootstrap({
 
     runApp(const App());
   }, (error, stack) {
-    // TODO crashlytics
+    // TO-DO crashlytics
   });
 }

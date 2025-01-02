@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:dtt/core/app_config.dart';
+import 'package:dtt/core/injector/injector.dart';
+import 'package:dtt/core/interceptors/token_interceptor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-import '../../interceptors/token_interceptor.dart';
-import '../injector.dart';
 
 class DioModule {
   DioModule._();

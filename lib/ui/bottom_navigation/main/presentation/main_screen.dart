@@ -94,8 +94,12 @@ class _MainScreenState extends State<MainScreen> {
                                               _controller.text = '';
                                             },
                                           )
-                                        : Assets.icons.icSearch
-                                            .svg(color: Theme.of(context).textTheme.bodyLarge?.color),
+                                        : Assets.icons.icSearch.svg(
+                                            colorFilter: ColorFilter.mode(
+                                              Theme.of(context).textTheme.bodyLarge!.color!,
+                                              BlendMode.srcIn,
+                                            ),
+                                          ),
                                     hintText: S.of(context).search,
                                     contentPadding: const EdgeInsets.all(AppConstants.kContentPadding),
                                   ),

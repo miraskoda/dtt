@@ -1,11 +1,10 @@
 import 'dart:ui';
 
 import 'package:dtt/core/app_config.dart';
+import 'package:dtt/core/keys/app_keys.dart';
+import 'package:dtt/services/app_service/app_service.dart';
+import 'package:dtt/services/local_storage_service/local_storage_service.dart';
 import 'package:flutter/scheduler.dart';
-
-import '../../../core/keys/app_keys.dart';
-import '../local_storage_service/local_storage_service.dart';
-import 'app_service.dart';
 
 class AppServiceImpl implements AppService {
   AppServiceImpl({

@@ -10,9 +10,8 @@ abstract class ApiRepository {
 }
 
 class ApiRepositoryImpl implements ApiRepository {
-  final ApiClient _apiClient;
-
   ApiRepositoryImpl(this._apiClient);
+  final ApiClient _apiClient;
 
   @override
   Future<Either<DataFailed<String>, DataSuccess<List<House>>>> fetchHouses() async {

@@ -1,11 +1,10 @@
+import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/services/app_service/app_service.dart';
 import 'package:dtt/services/app_service/app_service_impl.dart';
 import 'package:dtt/services/local_storage_service/local_storage_service.dart';
 import 'package:dtt/services/local_storage_service/shared_preferences_service.dart';
 import 'package:dtt/services/log_service/debug_log_service.dart';
 import 'package:dtt/services/log_service/log_service.dart';
-
-import '../injector.dart';
 
 class ServiceModule {
   ServiceModule._();

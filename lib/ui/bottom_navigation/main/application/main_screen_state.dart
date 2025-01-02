@@ -11,5 +11,5 @@ class MainScreenState with _$MainScreenState {
     @Default('') String searchText,
   }) = _MainScreenState;
 
-  factory MainScreenState.init() => MainScreenState();
+  factory MainScreenState.init() => const MainScreenState();
 }

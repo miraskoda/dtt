@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 enum NavigationItem { home, info }
 
 class Destination {
+  const Destination(this.label, this.icon);
   final String label;
   final SvgGenImage icon;
-  const Destination(this.label, this.icon);
 }
 
 final destinations = [
@@ -16,12 +16,11 @@ final destinations = [
 ];
 
 class NestedNavigation extends StatelessWidget {
-  final StatefulNavigationShell navigationShell;
-
   const NestedNavigation({
-    super.key,
     required this.navigationShell,
+    super.key,
   });
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {

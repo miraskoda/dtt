@@ -1,10 +1,9 @@
 import 'dart:async';
 
+import 'package:dtt/core/injector/injector.dart';
+import 'package:dtt/services/local_storage_service/local_storage_service.dart';
+import 'package:dtt/services/log_service/log_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../core/injector/injector.dart';
-import '../log_service/log_service.dart';
-import 'local_storage_service.dart';
 
 class SharedPreferencesService implements LocalStorageService {
   SharedPreferencesService({

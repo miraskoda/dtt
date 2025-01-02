@@ -47,13 +47,13 @@ class AppRouter {
       GoRoute(
         path: splashPath,
         name: splash,
-        builder: (context, state) => SplashScreen(),
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: detailPath,
         name: detail,
         builder: (context, state) {
-          final house = state.extra as House;
+          final house = state.extra! as House;
           return DetailScreen(house: house);
         },
       ),
@@ -67,7 +67,7 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: mainPath,
-                pageBuilder: (context, state) => NoTransitionPage(
+                pageBuilder: (context, state) => const NoTransitionPage(
                   child: MainScreen(),
                 ),
               ),

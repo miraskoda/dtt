@@ -3,65 +3,65 @@ import 'package:flutter/material.dart';
 
 class PrimaryPadding extends StatelessWidget {
   const PrimaryPadding.xxs({
+    required Widget child,
     bool top = true,
     bool bottom = true,
     bool left = true,
     bool right = true,
-    required Widget child,
     Key? key,
   }) : this._(AppConstants.kTinySpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
   const PrimaryPadding.xs({
+    required Widget child,
     bool top = true,
     bool bottom = true,
     bool left = true,
     bool right = true,
-    required Widget child,
     Key? key,
   }) : this._(AppConstants.kXSmallSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
   const PrimaryPadding.sm({
+    required Widget child,
     bool top = true,
     bool bottom = true,
     bool left = true,
     bool right = true,
-    required Widget child,
     Key? key,
   }) : this._(AppConstants.kSmallSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
   const PrimaryPadding.md({
+    required Widget child,
     bool top = true,
     bool bottom = true,
     bool left = true,
     bool right = true,
-    required Widget child,
     Key? key,
   }) : this._(AppConstants.kDefaultSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
   const PrimaryPadding.lg({
+    required Widget child,
     bool top = true,
     bool bottom = true,
     bool left = true,
     bool right = true,
-    required Widget child,
     Key? key,
   }) : this._(AppConstants.kLargeSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
   const PrimaryPadding.xl({
+    required Widget child,
     bool top = true,
     bool bottom = true,
     bool left = true,
     bool right = true,
-    required Widget child,
     Key? key,
   }) : this._(AppConstants.kXLargeSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
   const PrimaryPadding.xxl({
+    required Widget child,
     bool top = true,
     bool bottom = true,
     bool left = true,
     bool right = true,
-    required Widget child,
     Key? key,
   }) : this._(AppConstants.kHugeSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 

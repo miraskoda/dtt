@@ -1,9 +1,8 @@
 import 'package:dtt/core/injector/modules/bloc_module.dart';
+import 'package:dtt/core/injector/modules/dio_module.dart';
+import 'package:dtt/core/injector/modules/repository_module.dart';
+import 'package:dtt/core/injector/modules/service_module.dart';
 import 'package:get_it/get_it.dart';
-
-import 'modules/dio_module.dart';
-import 'modules/repository_module.dart';
-import 'modules/service_module.dart';
 
 class Injector {
   Injector._();

@@ -1,8 +1,7 @@
 import 'dart:developer' as developer;
 
+import 'package:dtt/services/log_service/log_service.dart';
 import 'package:logger/logger.dart';
-
-import 'log_service.dart';
 
 class DebugLogService implements LogService {
   DebugLogService({Logger? logger}) {

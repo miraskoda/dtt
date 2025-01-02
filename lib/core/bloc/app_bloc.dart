@@ -1,18 +1,17 @@
 import 'dart:async';
 
 import 'package:dtt/core/app_config.dart';
+import 'package:dtt/core/bloc_core/ui_status.dart';
+import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/services/app_service/app_service.dart';
 import 'package:dtt/services/log_service/log_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../generated/l10n.dart';
-import '../bloc_core/ui_status.dart';
-
+part 'app_bloc.freezed.dart';
 part 'app_event.dart';
 part 'app_state.dart';
-part 'app_bloc.freezed.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc({

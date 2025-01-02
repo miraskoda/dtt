@@ -1,3 +1,4 @@
+import 'package:dtt/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -6,14 +7,8 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE34A32), // Barva pozadí
-      body: Center(
-        child: Icon(
-          Icons.clear, // Můžeš vyměnit za vlastní obrázek
-          size: 100,
-          color: Colors.white,
-        ),
-      ),
+      backgroundColor: const Color(0xFFE34A32), // Barva pozadí
+      body: Assets.icons.icDtt.svg(),
     );
   }
 }
