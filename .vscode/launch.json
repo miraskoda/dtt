@@ -7,19 +7,28 @@
         {
             "name": "DTT",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--no-enable-impeller"
+            ]
         },
         {
             "name": "DTT (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "args": [
+                "--no-enable-impeller"
+            ]
         },
         {
             "name": "DTT (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": [
+                "--no-enable-impeller"
+            ]
         }
     ]
 }

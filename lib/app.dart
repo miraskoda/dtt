@@ -1,5 +1,6 @@
 import 'package:device_frame_plus/device_frame_plus.dart';
 import 'package:dtt/theme/app_themes.dart';
+import 'package:dtt/ui/others/primary_padding.dart';
 import 'package:dtt/ui/splash/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -107,8 +108,7 @@ class _App extends StatelessWidget {
                   color: isDarkMode
                       ? AppThemes.darkTheme.scaffoldBackgroundColor
                       : AppThemes.lightTheme.scaffoldBackgroundColor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(40),
+                  child: PrimaryPadding.lg(
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 430, maxHeight: 932),
                       child: Center(

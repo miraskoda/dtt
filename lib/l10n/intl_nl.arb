@@ -1,1 +1,19 @@
-{}
+{
+    "@@locale": "nl",
+    "appBarTitle": "DTT REAL ESTATE",
+    "@appBarTitle": {
+        "description": "App bar title for app"
+    },
+    "search": "Zoekopdracht",
+    "@search": {
+        "description": "Search field text"
+    },
+    "error": "Algemene fout",
+    "@error": {
+        "description": "General error text"
+    },
+    "emptyResult": "Geen resultaat gevonden!\nMisschien een andere zoekopdracht proberen?",
+    "@emptyResult": {
+        "description": "Empty result text"
+    }
+}

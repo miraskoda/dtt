@@ -161,24 +161,8 @@ class AppThemes {
       selectionHandleColor: brandRedColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
-      labelStyle: TextStyle(
-        color: brandRedColor,
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: brandRedColor,
-        ),
-      ),
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        foregroundColor: Colors.white,
-        backgroundColor: brandRedColor,
-        minimumSize: const Size.fromHeight(50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
+      focusedBorder: InputBorder.none,
+      enabledBorder: InputBorder.none,
     ),
     dividerTheme: const DividerThemeData(
       color: Colors.grey,
@@ -239,24 +223,8 @@ class AppThemes {
       selectionHandleColor: brandRedColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
-      labelStyle: TextStyle(
-        color: brandRedColor,
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: brandRedColor,
-        ),
-      ),
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        foregroundColor: _lightPrimaryColor,
-        backgroundColor: brandRedColor,
-        minimumSize: const Size.fromHeight(50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
+      focusedBorder: InputBorder.none,
+      enabledBorder: InputBorder.none,
     ),
     dividerTheme: const DividerThemeData(
       color: Colors.grey,

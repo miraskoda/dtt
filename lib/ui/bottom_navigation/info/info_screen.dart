@@ -121,7 +121,7 @@ class LangListTile extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
           color: Colors.white.withOpacity(0.1),
         ),
         child: RadioListTile<String>(

@@ -15,7 +15,9 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
           MainScreenState.init(),
         ) {
     on<_Init>(_init);
+    on<_Search>(_search);
   }
+
   final ApiRepository apiRepository;
 
   Future<void> _init(_Init e, Emitter<MainScreenState> emit) async {
@@ -29,7 +31,22 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     response.fold((l) {
       emit(state.copyWith(isLoading: false, isError: true, apiErrorString: l.error?.message ?? 'Generic error'));
     }, (r) {
-      emit(state.copyWith(isLoading: false, housesData: r.data!));
+      emit(state.copyWith(isLoading: false, housesData: r.data!, filteredHouses: r.data!));
     });
+  }
+
+  Future<void> _search(_Search e, Emitter<MainScreenState> emit) async {
+    final searchText = e.phrase.toLowerCase();
+    final filteredHouses = state.housesData.where((house) {
+      return house.city.toLowerCase().contains(searchText) ||
+          house.price.toString().contains(searchText) ||
+          (house.description.toLowerCase().contains(searchText));
+    }).toList();
+    emit(
+      state.copyWith(
+        searchText: searchText,
+        filteredHouses: filteredHouses,
+      ),
+    );
   }
 }

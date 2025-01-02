@@ -41,7 +41,7 @@ dependencies:
   package_info_plus: ^8.1.2
   flutter_map: ^7.0.2
   latlong2: ^0.9.1
-  easy_image_viewer: ^1.5.1
+  gap: ^3.0.1
   # google_maps_flutter: ^2.10.0
 
 dev_dependencies:
