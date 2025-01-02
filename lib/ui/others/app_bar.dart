@@ -1,3 +1,4 @@
+import 'package:dtt/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -8,7 +9,10 @@ class PrimaryAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text("DTT REAL ESTATE"),
+      title: Text(
+        S.of(context).appBarTitle,
+        style: Theme.of(context).textTheme.displaySmall,
+      ),
     );
   }
 

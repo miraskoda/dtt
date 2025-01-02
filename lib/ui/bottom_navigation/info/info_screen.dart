@@ -52,7 +52,7 @@ class InfoScreen extends StatelessWidget {
                       'assets/images/dtt_banner.png', // URL obrázku DTT
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 24,
                   ),
                   Expanded(
@@ -82,7 +82,7 @@ class InfoScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: AppConstants.kDefaultSpacing,
               ),
               LangListTile(locale: locale, lang: 'en', title: 'en'),
@@ -93,7 +93,7 @@ class InfoScreen extends StatelessWidget {
                 onChanged: (value) {
                   context.read<AppBloc>().add(const AppEvent.darkModeChanged());
                 },
-                title: Text('Dark mode'),
+                title: const Text('Dark mode'),
               ),
             ],
           ),
@@ -121,7 +121,7 @@ class LangListTile extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
+          borderRadius: BorderRadius.circular(10),
           color: Colors.white.withOpacity(0.1),
         ),
         child: RadioListTile<String>(

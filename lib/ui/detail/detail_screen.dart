@@ -3,6 +3,7 @@ import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
 import 'package:dtt/theme/app_themes.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';

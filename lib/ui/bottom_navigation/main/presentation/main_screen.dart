@@ -1,5 +1,4 @@
 import 'package:dtt/core/constants/constants.dart';
-import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/core/router/app_router.dart';
@@ -8,8 +7,10 @@ import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/theme/app_themes.dart';
 import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
 import 'package:dtt/ui/error/error_screen.dart';
+import 'package:dtt/ui/others/app_bar.dart';
 import 'package:dtt/ui/others/empty_screen.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
+import 'package:dtt/ui/others/primary_shimmer.dart';
 import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,45 +24,42 @@ class MainScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) => Injector.instance<MainScreenBloc>()..add(const MainScreenEvent.init()),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            S.of(context).appBarTitle,
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
-        ),
+        appBar: const PrimaryAppbar(),
         body: BlocBuilder<MainScreenBloc, MainScreenState>(
           builder: (context, state) => NestedScrollView(
             floatHeaderSlivers: true,
             headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return [
-                SliverAppBar(
-                  expandedHeight: 40,
-                  elevation: 1,
-                  flexibleSpace: FlexibleSpaceBar(
-                    collapseMode: CollapseMode.none,
-                    background: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppConstants.kDefaultSpacing,
-                        vertical: AppConstants.kSmallSpacing,
-                      ),
-                      child: SizedBox(
-                        height: 30,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: AppThemes.brandDarkGray,
-                            borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
-                          ),
-                          child: SizedBox(
-                            height: AppConstants.kLargeSpacing,
-                            child: TextFormField(
-                              onChanged: (String str) =>
-                                  Injector.instance<MainScreenBloc>().add(MainScreenEvent.search(phrase: str)),
-                              decoration: InputDecoration(
-                                isDense: true,
-                                suffixIcon: Assets.icons.icSearch.svg(),
-                                hintText: S.of(context).search,
-                                contentPadding: const EdgeInsets.symmetric(vertical: AppConstants.kContentPadding)
-                                    .copyWith(left: AppConstants.kContentPadding),
+                if (!state.isError)
+                  SliverAppBar(
+                    expandedHeight: 40,
+                    elevation: 1,
+                    flexibleSpace: FlexibleSpaceBar(
+                      collapseMode: CollapseMode.none,
+                      background: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstants.kDefaultSpacing,
+                          vertical: AppConstants.kSmallSpacing,
+                        ),
+                        child: SizedBox(
+                          height: 30,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: AppThemes.brandDarkGray,
+                              borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
+                            ),
+                            child: SizedBox(
+                              height: AppConstants.kLargeSpacing,
+                              child: TextFormField(
+                                onChanged: (String str) =>
+                                    Injector.instance<MainScreenBloc>().add(MainScreenEvent.search(phrase: str)),
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  suffixIcon: Assets.icons.icSearch.svg(),
+                                  hintText: S.of(context).search,
+                                  contentPadding: const EdgeInsets.symmetric(vertical: AppConstants.kContentPadding)
+                                      .copyWith(left: AppConstants.kContentPadding),
+                                ),
                               ),
                             ),
                           ),
@@ -69,12 +67,11 @@ class MainScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
               ];
             },
             body: Builder(
               builder: (context) {
-                if (state.isLoading) return const Center(child: CircularProgressIndicator());
+                if (state.isLoading) return const Center(child: PrimaryShimmer());
                 if (state.isError) return ErrorScreen(state.apiErrorString ?? S.of(context).error);
                 if (state.filteredHouses.isEmpty) return const EmptyScreen();
                 return ListView.builder(
@@ -99,11 +96,14 @@ class MainScreen extends StatelessWidget {
                                     borderRadius: const BorderRadius.all(
                                       Radius.circular(AppConstants.kNormalBorderRadius),
                                     ),
-                                    child: Image.network(
-                                      house.image.asDttImage(),
-                                      width: AppConstants.kRealEstateImageSize,
-                                      height: AppConstants.kRealEstateImageSize,
-                                      fit: BoxFit.cover,
+                                    child: Hero(
+                                      tag: house.id,
+                                      child: Image.network(
+                                        house.image.asDttImage(),
+                                        width: AppConstants.kRealEstateImageSize,
+                                        height: AppConstants.kRealEstateImageSize,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                   Expanded(
