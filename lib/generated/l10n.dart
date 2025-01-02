@@ -49,6 +49,46 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `DTT REAL ESTATE`
+  String get appBarTitle {
+    return Intl.message(
+      'DTT REAL ESTATE',
+      name: 'appBarTitle',
+      desc: 'App bar title for app',
+      args: [],
+    );
+  }
+
+  /// `Search for a home`
+  String get search {
+    return Intl.message(
+      'Search for a home',
+      name: 'search',
+      desc: 'Search field text',
+      args: [],
+    );
+  }
+
+  /// `General error`
+  String get error {
+    return Intl.message(
+      'General error',
+      name: 'error',
+      desc: 'General error text',
+      args: [],
+    );
+  }
+
+  /// `No result found!\nPerhaps try another search?`
+  String get emptyResult {
+    return Intl.message(
+      'No result found!\nPerhaps try another search?',
+      name: 'emptyResult',
+      desc: 'Empty result text',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

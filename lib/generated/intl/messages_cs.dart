@@ -21,5 +21,11 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'cs';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "appBarTitle": MessageLookupByLibrary.simpleMessage("DTT REAL ESTATE"),
+        "emptyResult": MessageLookupByLibrary.simpleMessage(
+            "Prazdno, zkuste hledat jinou frazi"),
+        "error": MessageLookupByLibrary.simpleMessage("Obecna chyba"),
+        "search": MessageLookupByLibrary.simpleMessage("Hledej domov")
+      };
 }

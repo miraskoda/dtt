@@ -21,5 +21,11 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'nl';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "appBarTitle": MessageLookupByLibrary.simpleMessage("DTT REAL ESTATE"),
+        "emptyResult": MessageLookupByLibrary.simpleMessage(
+            "Geen resultaat gevonden!\nMisschien een andere zoekopdracht proberen?"),
+        "error": MessageLookupByLibrary.simpleMessage("Algemene fout"),
+        "search": MessageLookupByLibrary.simpleMessage("Zoekopdracht")
+      };
 }

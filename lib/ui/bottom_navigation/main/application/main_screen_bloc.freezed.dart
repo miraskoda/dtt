@@ -19,32 +19,38 @@ mixin _$MainScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(String phrase) search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(String phrase)? search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(String phrase)? search,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_Search value) search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_Search value)? search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_Search value)? search,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +118,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
+    required TResult Function(String phrase) search,
   }) {
     return init();
   }
@@ -120,6 +127,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
+    TResult? Function(String phrase)? search,
   }) {
     return init?.call();
   }
@@ -128,6 +136,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
+    TResult Function(String phrase)? search,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -140,6 +149,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
+    required TResult Function(_Search value) search,
   }) {
     return init(this);
   }
@@ -148,6 +158,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
+    TResult? Function(_Search value)? search,
   }) {
     return init?.call(this);
   }
@@ -156,6 +167,7 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
+    TResult Function(_Search value)? search,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -170,11 +182,153 @@ abstract class _Init implements MainScreenEvent {
 }
 
 /// @nodoc
+abstract class _$$SearchImplCopyWith<$Res> {
+  factory _$$SearchImplCopyWith(
+          _$SearchImpl value, $Res Function(_$SearchImpl) then) =
+      __$$SearchImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String phrase});
+}
+
+/// @nodoc
+class __$$SearchImplCopyWithImpl<$Res>
+    extends _$MainScreenEventCopyWithImpl<$Res, _$SearchImpl>
+    implements _$$SearchImplCopyWith<$Res> {
+  __$$SearchImplCopyWithImpl(
+      _$SearchImpl _value, $Res Function(_$SearchImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MainScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phrase = null,
+  }) {
+    return _then(_$SearchImpl(
+      phrase: null == phrase
+          ? _value.phrase
+          : phrase // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchImpl implements _Search {
+  const _$SearchImpl({required this.phrase});
+
+  @override
+  final String phrase;
+
+  @override
+  String toString() {
+    return 'MainScreenEvent.search(phrase: $phrase)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchImpl &&
+            (identical(other.phrase, phrase) || other.phrase == phrase));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, phrase);
+
+  /// Create a copy of MainScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String phrase) search,
+  }) {
+    return search(phrase);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String phrase)? search,
+  }) {
+    return search?.call(phrase);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String phrase)? search,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(phrase);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Search value) search,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Search value)? search,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Search value)? search,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Search implements MainScreenEvent {
+  const factory _Search({required final String phrase}) = _$SearchImpl;
+
+  String get phrase;
+
+  /// Create a copy of MainScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$MainScreenState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   String? get apiErrorString => throw _privateConstructorUsedError;
   List<House> get housesData => throw _privateConstructorUsedError;
+  List<House> get filteredHouses => throw _privateConstructorUsedError;
+  String get searchText => throw _privateConstructorUsedError;
 
   /// Create a copy of MainScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -193,7 +347,9 @@ abstract class $MainScreenStateCopyWith<$Res> {
       {bool isLoading,
       bool isError,
       String? apiErrorString,
-      List<House> housesData});
+      List<House> housesData,
+      List<House> filteredHouses,
+      String searchText});
 }
 
 /// @nodoc
@@ -215,6 +371,8 @@ class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
     Object? isError = null,
     Object? apiErrorString = freezed,
     Object? housesData = null,
+    Object? filteredHouses = null,
+    Object? searchText = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -233,6 +391,14 @@ class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
           ? _value.housesData
           : housesData // ignore: cast_nullable_to_non_nullable
               as List<House>,
+      filteredHouses: null == filteredHouses
+          ? _value.filteredHouses
+          : filteredHouses // ignore: cast_nullable_to_non_nullable
+              as List<House>,
+      searchText: null == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -249,7 +415,9 @@ abstract class _$$MainScreenStateImplCopyWith<$Res>
       {bool isLoading,
       bool isError,
       String? apiErrorString,
-      List<House> housesData});
+      List<House> housesData,
+      List<House> filteredHouses,
+      String searchText});
 }
 
 /// @nodoc
@@ -269,6 +437,8 @@ class __$$MainScreenStateImplCopyWithImpl<$Res>
     Object? isError = null,
     Object? apiErrorString = freezed,
     Object? housesData = null,
+    Object? filteredHouses = null,
+    Object? searchText = null,
   }) {
     return _then(_$MainScreenStateImpl(
       isLoading: null == isLoading
@@ -287,6 +457,14 @@ class __$$MainScreenStateImplCopyWithImpl<$Res>
           ? _value._housesData
           : housesData // ignore: cast_nullable_to_non_nullable
               as List<House>,
+      filteredHouses: null == filteredHouses
+          ? _value._filteredHouses
+          : filteredHouses // ignore: cast_nullable_to_non_nullable
+              as List<House>,
+      searchText: null == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -298,8 +476,11 @@ class _$MainScreenStateImpl implements _MainScreenState {
       {this.isLoading = false,
       this.isError = false,
       this.apiErrorString,
-      final List<House> housesData = const []})
-      : _housesData = housesData;
+      final List<House> housesData = const [],
+      final List<House> filteredHouses = const [],
+      this.searchText = ''})
+      : _housesData = housesData,
+        _filteredHouses = filteredHouses;
 
   @override
   @JsonKey()
@@ -318,9 +499,22 @@ class _$MainScreenStateImpl implements _MainScreenState {
     return EqualUnmodifiableListView(_housesData);
   }
 
+  final List<House> _filteredHouses;
+  @override
+  @JsonKey()
+  List<House> get filteredHouses {
+    if (_filteredHouses is EqualUnmodifiableListView) return _filteredHouses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredHouses);
+  }
+
+  @override
+  @JsonKey()
+  final String searchText;
+
   @override
   String toString() {
-    return 'MainScreenState(isLoading: $isLoading, isError: $isError, apiErrorString: $apiErrorString, housesData: $housesData)';
+    return 'MainScreenState(isLoading: $isLoading, isError: $isError, apiErrorString: $apiErrorString, housesData: $housesData, filteredHouses: $filteredHouses, searchText: $searchText)';
   }
 
   @override
@@ -334,12 +528,22 @@ class _$MainScreenStateImpl implements _MainScreenState {
             (identical(other.apiErrorString, apiErrorString) ||
                 other.apiErrorString == apiErrorString) &&
             const DeepCollectionEquality()
-                .equals(other._housesData, _housesData));
+                .equals(other._housesData, _housesData) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredHouses, _filteredHouses) &&
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError,
-      apiErrorString, const DeepCollectionEquality().hash(_housesData));
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      isError,
+      apiErrorString,
+      const DeepCollectionEquality().hash(_housesData),
+      const DeepCollectionEquality().hash(_filteredHouses),
+      searchText);
 
   /// Create a copy of MainScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -356,7 +560,9 @@ abstract class _MainScreenState implements MainScreenState {
       {final bool isLoading,
       final bool isError,
       final String? apiErrorString,
-      final List<House> housesData}) = _$MainScreenStateImpl;
+      final List<House> housesData,
+      final List<House> filteredHouses,
+      final String searchText}) = _$MainScreenStateImpl;
 
   @override
   bool get isLoading;
@@ -366,6 +572,10 @@ abstract class _MainScreenState implements MainScreenState {
   String? get apiErrorString;
   @override
   List<House> get housesData;
+  @override
+  List<House> get filteredHouses;
+  @override
+  String get searchText;
 
   /// Create a copy of MainScreenState
   /// with the given fields replaced by the non-null parameter values.

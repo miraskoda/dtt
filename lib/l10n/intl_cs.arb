@@ -1,1 +1,19 @@
-{}
+{
+    "@@locale": "cs",
+    "appBarTitle": "DTT REAL ESTATE",
+    "@appBarTitle": {
+        "description": "App bar title for app"
+    },
+    "search": "Hledej domov",
+    "@search": {
+        "description": "Search field text"
+    },
+    "error": "Obecna chyba",
+    "@error": {
+        "description": "General error text"
+    },
+    "emptyResult": "Prazdno, zkuste hledat jinou frazi",
+    "@emptyResult": {
+        "description": "Empty result text"
+    }
+}

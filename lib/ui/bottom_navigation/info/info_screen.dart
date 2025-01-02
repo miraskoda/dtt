@@ -1,5 +1,6 @@
 import 'package:dtt/core/app_config.dart';
 import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/utils/url_lancher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,7 @@ class InfoScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(AppConstants.kDefaultSpacing),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -120,7 +121,7 @@ class LangListTile extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
           color: Colors.white.withOpacity(0.1),
         ),
         child: RadioListTile<String>(

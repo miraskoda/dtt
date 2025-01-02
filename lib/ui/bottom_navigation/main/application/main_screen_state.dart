@@ -7,6 +7,8 @@ class MainScreenState with _$MainScreenState {
     @Default(false) bool isError,
     String? apiErrorString,
     @Default([]) List<House> housesData,
+    @Default([]) List<House> filteredHouses,
+    @Default('') String searchText,
   }) = _MainScreenState;
 
   factory MainScreenState.init() => MainScreenState();
