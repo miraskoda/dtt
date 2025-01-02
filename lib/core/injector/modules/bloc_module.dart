@@ -1,7 +1,6 @@
 import 'package:dtt/core/bloc/app_bloc.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
-import 'package:dtt/ui/splash/application/splash_screen_bloc.dart';
 
 class BlocModule {
   BlocModule._();
@@ -20,7 +19,6 @@ class BlocModule {
         () => MainScreenBloc(
           apiRepository: injector(),
         ),
-      )
-      ..registerLazySingleton<SplashScreenBloc>(SplashScreenBloc.new);
+      );
   }
 }
