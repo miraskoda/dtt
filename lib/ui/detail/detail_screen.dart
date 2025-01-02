@@ -1,11 +1,17 @@
+import 'dart:async';
+
 import 'package:dtt/api/models/house.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
+import 'package:dtt/core/utils/map_launcher.dart';
+import 'package:dtt/generated/assets.gen.dart';
 import 'package:dtt/theme/app_themes.dart';
+import 'package:dtt/ui/others/build_icon_with_text.dart';
+import 'package:dtt/ui/others/map_widget.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
+import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -20,20 +26,38 @@ class DetailScreen extends StatelessWidget {
     );
     return Scaffold(
       body: CustomScrollView(
+        clipBehavior: Clip.none,
         slivers: [
           SliverAppBar(
+            bottom: PreferredSize(
+              preferredSize: const Size(double.infinity, AppConstants.kDefaultSpacing),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(AppConstants.kLargeBorderRadius),
+                  ),
+                ),
+                child: const SizedBox(
+                  width: double.infinity,
+                  height: AppConstants.kDefaultSpacing,
+                ),
+              ),
+            ),
             stretch: true,
             expandedHeight: 200,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: GestureDetector(
                 onTap: () {
-                  showImageViewer(
-                    context,
-                    imageProvider.image,
-                    swipeDismissible: true,
-                    doubleTapZoomable: true,
-                    closeButtonColor: AppThemes.brandRedColor,
+                  unawaited(
+                    showImageViewer(
+                      context,
+                      imageProvider.image,
+                      swipeDismissible: true,
+                      doubleTapZoomable: true,
+                      closeButtonColor: AppThemes.brandRedColor,
+                    ),
                   );
                 },
                 child: Hero(
@@ -44,144 +68,90 @@ class DetailScreen extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(AppConstants.kLargeBorderRadius),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  PrimaryPadding.md(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '\$${house.price}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PrimaryPadding.md(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            house.price.asDTTPrice(),
+                            style: Theme.of(context).textTheme.displayLarge,
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          house.zip,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey[700],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  BuildIconWithText(
+                                    icon: Assets.icons.icBed,
+                                    text: '${house.bedrooms}',
+                                  ),
+                                  BuildIconWithText(
+                                    icon: Assets.icons.icBath,
+                                    text: '${house.bathrooms}',
+                                  ),
+                                  BuildIconWithText(
+                                    icon: Assets.icons.icLayers,
+                                    text: '${house.size} m²',
+                                  ),
+                                  BuildIconWithText(
+                                    icon: Assets.icons.icLocation,
+                                    text: '100 km',
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'Description',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                        ],
+                      ),
+                      const PrimarySpacing.gapMd(),
+                      Text(
+                        '${house.zip} - ${house.city}',
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                      const PrimarySpacing.gapLg(),
+                      Text(
+                        'Description',
+                        style: Theme.of(context).textTheme.displayLarge,
+                      ),
+                      const PrimarySpacing.gapMd(),
+                      Text(
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo ligula id quam vestibulum, at aliquam ex mollis.',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      const PrimarySpacing.gapLg(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Location',
+                            style: Theme.of(context).textTheme.displayLarge,
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo ligula id quam vestibulum, at aliquam ex mollis.',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[800],
+                          InkWell(
+                            onTap: () => MapLauncher.launchFromCoordinates(LatLng(house.latitude, house.longitude)),
+                            child: Text(
+                              'Open in maps',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            _buildDetailIcon(Icons.bed, '${house.bedrooms} Bedrooms'),
-                            _buildDetailIcon(Icons.bathtub, '${house.bathrooms} Bathrooms'),
-                            _buildDetailIcon(Icons.square_foot, '${house.size} m²'),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'Location',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const MapWidget(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Widget pro ikonky s popisem
-  Widget _buildDetailIcon(IconData icon, String text) {
-    return Column(
-      children: [
-        Icon(icon, size: 32, color: Colors.grey[700]),
-        const SizedBox(height: 4),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[800],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class MapWidget extends StatefulWidget {
-  const MapWidget({
-    super.key,
-  });
-
-  @override
-  State<MapWidget> createState() => _MapWidgetState();
-}
-
-class _MapWidgetState extends State<MapWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: FlutterMap(
-          options: const MapOptions(
-            initialCenter: LatLng(52.370216, 4.895168), // Amsterdam
-            initialZoom: 10,
-          ),
-          children: [
-            TileLayer(
-              urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            ),
-            const MarkerLayer(
-              markers: [
-                Marker(
-                  width: 80,
-                  height: 80,
-                  point: LatLng(52.370216, 4.895168),
-                  child: Icon(
-                    Icons.location_pin,
-                    size: 40,
-                    color: AppThemes.brandRedColor,
+                        ],
+                      ),
+                      const PrimarySpacing.gapMd(),
+                      MapWidget(
+                        coordinates: LatLng(house.latitude, house.longitude),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

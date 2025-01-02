@@ -1,4 +1,9 @@
 import 'package:device_frame_plus/device_frame_plus.dart';
+import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/bloc_core/ui_status.dart';
+import 'package:dtt/core/injector/injector.dart';
+import 'package:dtt/core/router/app_router.dart';
+import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/theme/app_themes.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
 import 'package:dtt/ui/splash/splash_screen.dart';
@@ -7,12 +12,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'core/bloc/app_bloc.dart';
-import 'core/bloc_core/ui_status.dart';
-import 'core/injector/injector.dart';
-import 'core/router/app_router.dart';
-import 'generated/l10n.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -45,8 +44,8 @@ class _AppState extends State<App> {
           selector: (state) => state.status,
           builder: (context, appStatus) {
             return appStatus.when(
-              initial: () => SplashScreen(),
-              loading: () => SplashScreen(),
+              initial: SplashScreen.new,
+              loading: SplashScreen.new,
               loadFailed: (_) => const SizedBox(),
               loadSuccess: (_) => const _App(),
             );
@@ -104,7 +103,7 @@ class _App extends StatelessWidget {
                 DefaultCupertinoLocalizations.delegate,
               ],
               builder: (context, child) {
-                return Container(
+                return ColoredBox(
                   color: isDarkMode
                       ? AppThemes.darkTheme.scaffoldBackgroundColor
                       : AppThemes.lightTheme.scaffoldBackgroundColor,

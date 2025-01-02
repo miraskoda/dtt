@@ -40,7 +40,7 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     final filteredHouses = state.housesData.where((house) {
       return house.city.toLowerCase().contains(searchText) ||
           house.price.toString().contains(searchText) ||
-          (house.description.toLowerCase().contains(searchText));
+          (house.zip.toLowerCase().contains(searchText));
     }).toList();
     emit(
       state.copyWith(

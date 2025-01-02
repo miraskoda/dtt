@@ -38,7 +38,7 @@ dependencies:
   latlong2: ^0.9.1
   gap: ^3.0.1
   easy_image_viewer: ^1.5.1
-  # google_maps_flutter: ^2.10.0
+  maps_launcher: ^3.0.0+1
 
 dev_dependencies:
   flutter_test:

@@ -7,6 +7,7 @@ import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
 import 'package:dtt/ui/error/error_screen.dart';
 import 'package:dtt/ui/others/app_bar.dart';
+import 'package:dtt/ui/others/build_icon_with_text.dart';
 import 'package:dtt/ui/others/empty_screen.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
 import 'package:dtt/ui/others/primary_shimmer.dart';
@@ -155,36 +156,32 @@ class _MainScreenState extends State<MainScreen> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              '\$${house.price}',
+                                              house.price.asDTTPrice(),
                                               style: Theme.of(context).textTheme.displaySmall,
                                             ),
                                             const PrimarySpacing.gapXxs(),
                                             Text(
-                                              house.city,
+                                              '${house.zip} - ${house.city}',
                                               style: Theme.of(context).textTheme.bodyMedium,
                                             ),
                                             const Spacer(),
                                             Row(
                                               children: [
-                                                _buildIconWithText(
-                                                  Assets.icons.icBed,
-                                                  '${house.bedrooms}',
-                                                  context,
+                                                BuildIconWithText(
+                                                  icon: Assets.icons.icBed,
+                                                  text: '${house.bedrooms}',
                                                 ),
-                                                _buildIconWithText(
-                                                  Assets.icons.icBath,
-                                                  '${house.bathrooms}',
-                                                  context,
+                                                BuildIconWithText(
+                                                  icon: Assets.icons.icBath,
+                                                  text: '${house.bathrooms}',
                                                 ),
-                                                _buildIconWithText(
-                                                  Assets.icons.icLayers,
-                                                  '${house.size} m²',
-                                                  context,
+                                                BuildIconWithText(
+                                                  icon: Assets.icons.icLayers,
+                                                  text: '${house.size} m²',
                                                 ),
-                                                _buildIconWithText(
-                                                  Assets.icons.icLocation,
-                                                  '100 km',
-                                                  context,
+                                                BuildIconWithText(
+                                                  icon: Assets.icons.icLocation,
+                                                  text: '100 km',
                                                 ),
                                               ],
                                             ),
@@ -207,27 +204,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  ColorFilter _iconColorFilter(BuildContext context) {
-    return ColorFilter.mode(
-      Theme.of(context).iconTheme.color!.withAlpha(128),
-      BlendMode.srcIn,
-    );
-  }
-
-  Widget _buildIconWithText(SvgGenImage icon, String text, BuildContext context) {
-    return Row(
-      children: [
-        icon.svg(colorFilter: _iconColorFilter(context), width: AppConstants.kDefaultSpacing),
-        const PrimarySpacing.gapXxs(),
-        Text(
-          text,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        const PrimarySpacing.gapSm(),
-      ],
     );
   }
 }
