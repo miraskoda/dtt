@@ -1,4 +1,4 @@
-package com.example.dtt
+package com.miraskoda.dtt
 
 import io.flutter.embedding.android.FlutterActivity
 
