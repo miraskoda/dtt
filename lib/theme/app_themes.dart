@@ -31,37 +31,37 @@ class AppThemes {
   //Text themes
   static const TextTheme _lightTextTheme = TextTheme(
     displayLarge: TextStyle(
-      fontSize: 18.0,
+      fontSize: 18,
       fontWeight: FontWeight.bold,
       color: _lightTextColor,
     ), // Title 01
     displayMedium: TextStyle(
-      fontSize: 16.0,
+      fontSize: 16,
       fontWeight: FontWeight.bold,
       color: _lightTextColor,
     ), // Title 02
     displaySmall: TextStyle(
-      fontSize: 16.0,
+      fontSize: 16,
       fontWeight: FontWeight.w500,
       color: _lightTextColor,
     ), // Title 03
     bodyLarge: TextStyle(
-      fontSize: 12.0,
+      fontSize: 12,
       fontWeight: FontWeight.normal,
       color: _lightTextColor,
     ), // Body
     bodyMedium: TextStyle(
-      fontSize: 12.0,
+      fontSize: 12,
       fontWeight: FontWeight.w300,
       color: _lightTextColor,
     ), // Input
     bodySmall: TextStyle(
-      fontSize: 12.0,
+      fontSize: 12,
       fontWeight: FontWeight.normal,
       color: _lightTextColor,
     ), // Hint / Detail
     titleMedium: TextStyle(
-      fontSize: 10.0,
+      fontSize: 10,
       fontWeight: FontWeight.normal,
       color: _lightTextColor,
     ), // Subtitle
@@ -69,37 +69,37 @@ class AppThemes {
 
   static const TextTheme _darkTextTheme = TextTheme(
     displayLarge: TextStyle(
-      fontSize: 18.0,
+      fontSize: 18,
       fontWeight: FontWeight.bold,
       color: _darkTextColor,
     ), // Title 01
     displayMedium: TextStyle(
-      fontSize: 16.0,
+      fontSize: 16,
       fontWeight: FontWeight.bold,
       color: _darkTextColor,
     ), // Title 02
     displaySmall: TextStyle(
-      fontSize: 16.0,
+      fontSize: 16,
       fontWeight: FontWeight.w500,
       color: _darkTextColor,
     ), // Title 03
     bodyLarge: TextStyle(
-      fontSize: 12.0,
+      fontSize: 12,
       fontWeight: FontWeight.normal,
       color: _darkTextColor,
     ), // Body
     bodyMedium: TextStyle(
-      fontSize: 12.0,
+      fontSize: 12,
       fontWeight: FontWeight.w300,
       color: _darkTextColor,
     ), // Input
     bodySmall: TextStyle(
-      fontSize: 12.0,
+      fontSize: 12,
       fontWeight: FontWeight.normal,
       color: _darkTextColor,
     ), // Hint / Detail
     titleMedium: TextStyle(
-      fontSize: 10.0,
+      fontSize: 10,
       fontWeight: FontWeight.normal,
       color: _darkTextColor,
     ), // Subtitle
@@ -112,17 +112,6 @@ class AppThemes {
       tileColor: Colors.white,
       selectedColor: Colors.white,
       selectedTileColor: brandRedColor,
-    ),
-    sliderTheme: SliderThemeData(
-      showValueIndicator: ShowValueIndicator.always,
-      activeTrackColor: brandRedColor,
-      inactiveTrackColor: brandRedColor.withOpacity(0.3),
-      thumbColor: brandRedColor,
-      overlayColor: brandRedColor.withOpacity(0.3),
-      valueIndicatorColor: brandRedColor,
-      valueIndicatorTextStyle: const TextStyle(
-        color: Colors.white,
-      ),
     ),
     checkboxTheme: CheckboxThemeData(
       checkColor: WidgetStateProperty.all(Colors.white),
@@ -138,7 +127,7 @@ class AppThemes {
     brightness: Brightness.light,
     primaryColor: _lightPrimaryColor,
     scaffoldBackgroundColor: _lightBackgroundColor,
-    navigationBarTheme: NavigationBarThemeData(
+    navigationBarTheme: const NavigationBarThemeData(
       height: 40,
       backgroundColor: Colors.white,
       indicatorColor: Colors.transparent,
@@ -176,17 +165,6 @@ class AppThemes {
       selectedColor: Colors.white,
       selectedTileColor: brandLightColor,
     ),
-    sliderTheme: SliderThemeData(
-      showValueIndicator: ShowValueIndicator.always,
-      activeTrackColor: brandRedColor,
-      inactiveTrackColor: brandRedColor.withOpacity(0.3),
-      thumbColor: brandRedColor,
-      overlayColor: brandRedColor.withOpacity(0.3),
-      valueIndicatorColor: brandRedColor,
-      valueIndicatorTextStyle: const TextStyle(
-        color: Colors.white,
-      ),
-    ),
     checkboxTheme: CheckboxThemeData(
       checkColor: WidgetStateProperty.all(Colors.white),
       fillColor: WidgetStateProperty.all(brandRedColor),
@@ -195,7 +173,7 @@ class AppThemes {
       thumbColor: WidgetStateProperty.all(brandLightGray),
       trackColor: WidgetStateProperty.all(brandLightGray.withOpacity(0.3)),
     ),
-    navigationBarTheme: NavigationBarThemeData(
+    navigationBarTheme: const NavigationBarThemeData(
       indicatorColor: Colors.transparent,
       height: 40,
       labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,

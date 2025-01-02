@@ -2,6 +2,7 @@ import 'package:dtt/core/app_config.dart';
 import 'package:dtt/core/bloc/app_bloc.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/utils/url_lancher.dart';
+import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,62 +20,48 @@ class InfoScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'ABOUT',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.displayLarge,
               ),
-              const SizedBox(height: AppConstants.kDefaultSpacing),
+              const PrimarySpacing.gapMd(),
               const Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                 style: TextStyle(fontSize: AppConstants.kDefaultSpacing),
               ),
-              const SizedBox(height: AppConstants.kDefaultSpacing),
-              const Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.',
-                style: TextStyle(fontSize: AppConstants.kDefaultSpacing),
-              ),
-              const SizedBox(height: 32),
-              const Text(
+              const PrimarySpacing.gapMd(),
+              Text(
                 'Design and Development',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.displayLarge,
               ),
-              const SizedBox(height: AppConstants.kDefaultSpacing),
+              const PrimarySpacing.gapMd(),
               Row(
                 children: [
                   Expanded(
                     child: Image.asset(
-                      'assets/images/dtt_banner.png', // URL obrázku DTT
+                      'assets/images/dtt_banner.png',
                     ),
                   ),
-                  const SizedBox(
-                    width: 24,
-                  ),
+                  const PrimarySpacing.gapLg(),
                   Expanded(
                     flex: 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           'by DTT',
-                          style: TextStyle(fontSize: AppConstants.kDefaultSpacing),
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                         GestureDetector(
                           onTap: () {
                             UrlLauncher.launchURL(AppConfig.dttWebUrl);
                           },
-                          child: const Text(
+                          child: Text(
                             'd-tt.nl',
-                            style: TextStyle(
-                              fontSize: AppConstants.kDefaultSpacing,
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline,
-                            ),
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline,
+                                ),
                           ),
                         ),
                       ],
@@ -82,19 +69,11 @@ class InfoScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: AppConstants.kDefaultSpacing,
-              ),
-              LangListTile(locale: locale, lang: 'en', title: 'en'),
-              LangListTile(locale: locale, lang: 'cs', title: 'cz'),
-              LangListTile(locale: locale, lang: 'nl', title: 'nl'),
-              SwitchListTile(
-                value: context.select((AppBloc bloc) => bloc.state.isDarkMode),
-                onChanged: (value) {
-                  context.read<AppBloc>().add(const AppEvent.darkModeChanged());
-                },
-                title: const Text('Dark mode'),
-              ),
+              const PrimarySpacing.gapLg(),
+              LangListTile(locale: locale, lang: 'en', title: 'English'),
+              LangListTile(locale: locale, lang: 'cs', title: 'Czech'),
+              LangListTile(locale: locale, lang: 'nl', title: 'Dutch'),
+              const DarkModeListTile(),
             ],
           ),
         ),
@@ -119,11 +98,8 @@ class LangListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white.withOpacity(0.1),
-        ),
+      child: ColoredBox(
+        color: Colors.white.withValues(alpha: .2),
         child: RadioListTile<String>(
           dense: true,
           value: lang,
@@ -134,6 +110,26 @@ class LangListTile extends StatelessWidget {
           },
           title: Text(title),
         ),
+      ),
+    );
+  }
+}
+
+class DarkModeListTile extends StatelessWidget {
+  const DarkModeListTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: Colors.white.withValues(alpha: .2),
+      child: SwitchListTile(
+        dense: true,
+        controlAffinity: ListTileControlAffinity.trailing,
+        value: context.select((AppBloc bloc) => bloc.state.isDarkMode),
+        onChanged: (value) {
+          context.read<AppBloc>().add(const AppEvent.darkModeChanged());
+        },
+        title: const Text('Dark mode'),
       ),
     );
   }
