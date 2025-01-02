@@ -39,6 +39,8 @@ dependencies:
   gap: ^3.0.1
   easy_image_viewer: ^1.5.1
   maps_launcher: ^3.0.0+1
+  firebase_core: ^3.9.0
+  firebase_crashlytics: ^4.2.0
 
 dev_dependencies:
   flutter_test:

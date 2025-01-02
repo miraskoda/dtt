@@ -1,0 +1,55 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "dtt-real-estate-79824",
+          "appId": "1:1002091698201:android:5cec2f5b0ce3966e397288",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "dtt-real-estate-79824",
+          "appId": "1:1002091698201:ios:73d8bfccf36b08ab397288",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "dtt-real-estate-79824",
+          "appId": "1:1002091698201:ios:73d8bfccf36b08ab397288",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "dtt-real-estate-79824",
+          "configurations": {
+            "android": "1:1002091698201:android:5cec2f5b0ce3966e397288",
+            "ios": "1:1002091698201:ios:73d8bfccf36b08ab397288",
+            "macos": "1:1002091698201:ios:73d8bfccf36b08ab397288",
+            "web": "1:1002091698201:web:d1c29b4f3612a5fe397288",
+            "windows": "1:1002091698201:web:0df7386f9e7593b2397288"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

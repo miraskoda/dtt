@@ -12,7 +12,9 @@ class TokenInterceptor extends InterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final headers = {'Access-Key': AppConfig.authApiKey};
+    final headers = {
+      'Access-Key': AppConfig.authApiKey,
+    };
     options.headers.addAll(headers);
     return super.onRequest(options, handler);
   }

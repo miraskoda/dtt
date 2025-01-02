@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dtt/app.dart';
 import 'package:dtt/core/bloc_core/bloc_observer.dart';
 import 'package:dtt/core/injector/injector.dart';
+import 'package:dtt/services/crashlytics_service/crashlytics_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,6 @@ Future<void> bootstrap({
 
     runApp(const App());
   }, (error, stack) {
-    // TO-DO crashlytics
+    Injector.instance<CrashlyticsService>().recordException(error, stack);
   });
 }

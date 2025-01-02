@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1002091698201",
+    "project_id": "dtt-real-estate-79824",
+    "storage_bucket": "dtt-real-estate-79824.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002091698201:android:5cec2f5b0ce3966e397288",
+        "android_client_info": {
+          "package_name": "com.miraskoda.dtt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlHbwEWdL1sLBMLtHnAtpoH7uGPTLbwzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
