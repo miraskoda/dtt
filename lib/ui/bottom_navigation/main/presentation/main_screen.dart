@@ -63,8 +63,9 @@ class _MainScreenState extends State<MainScreen> {
                       flexibleSpace: FlexibleSpaceBar(
                         collapseMode: CollapseMode.none,
                         background: Padding(
-                          padding: const EdgeInsets.all(
-                            AppConstants.kDefaultSpacing,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppConstants.kDefaultSpacing,
+                            vertical: AppConstants.kSmallSpacing,
                           ),
                           child: SizedBox(
                             height: AppConstants.kLargeSpacing,
@@ -80,7 +81,6 @@ class _MainScreenState extends State<MainScreen> {
                                   onChanged: (String str) =>
                                       Injector.instance<MainScreenBloc>().add(MainScreenEvent.search(phrase: str)),
                                   decoration: InputDecoration(
-                                    isDense: true,
                                     suffixIconConstraints: const BoxConstraints(
                                       maxHeight: AppConstants.kDefaultSpacing,
                                     ),
