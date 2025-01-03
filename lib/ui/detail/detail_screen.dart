@@ -3,14 +3,17 @@ import 'dart:async';
 import 'package:dtt/api/models/house.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
+import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/core/utils/map_launcher.dart';
 import 'package:dtt/generated/assets.gen.dart';
 import 'package:dtt/theme/app_themes.dart';
+import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
 import 'package:dtt/ui/others/build_icon_with_text.dart';
 import 'package:dtt/ui/others/map_widget.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
 import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -23,7 +26,13 @@ class DetailScreen extends StatelessWidget {
     final imageProvider = Image.network(
       house.image.asDttImage(),
       fit: BoxFit.cover,
+      errorBuilder: (_, __, ___) => Assets.images.house6.image(
+        height: AppConstants.kRealEstateImageSize,
+        width: AppConstants.kRealEstateImageSize,
+        fit: BoxFit.cover,
+      ),
     );
+    final state = Injector.instance<MainScreenBloc>().state;
     return Scaffold(
       body: CustomScrollView(
         clipBehavior: Clip.none,
@@ -31,16 +40,19 @@ class DetailScreen extends StatelessWidget {
           SliverAppBar(
             bottom: PreferredSize(
               preferredSize: const Size(double.infinity, AppConstants.kDefaultSpacing),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(AppConstants.kLargeBorderRadius),
+              child: Transform.translate(
+                offset: const Offset(0, 1),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(AppConstants.kLargeBorderRadius),
+                    ),
                   ),
-                ),
-                child: const SizedBox(
-                  width: double.infinity,
-                  height: AppConstants.kDefaultSpacing,
+                  child: const SizedBox(
+                    width: double.infinity,
+                    height: AppConstants.kDefaultSpacing,
+                  ),
                 ),
               ),
             ),
@@ -49,17 +61,19 @@ class DetailScreen extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: GestureDetector(
-                onTap: () {
-                  unawaited(
-                    showImageViewer(
-                      context,
-                      imageProvider.image,
-                      swipeDismissible: true,
-                      doubleTapZoomable: true,
-                      closeButtonColor: AppThemes.brandRedColor,
-                    ),
-                  );
-                },
+                onTap: kIsWeb
+                    ? null
+                    : () {
+                        unawaited(
+                          showImageViewer(
+                            context,
+                            imageProvider.image,
+                            swipeDismissible: true,
+                            doubleTapZoomable: true,
+                            closeButtonColor: AppThemes.brandRedColor,
+                          ),
+                        );
+                      },
                 child: Hero(
                   tag: house.id,
                   child: imageProvider,
@@ -99,10 +113,14 @@ class DetailScreen extends StatelessWidget {
                                     icon: Assets.icons.icLayers,
                                     text: '${house.size} m²',
                                   ),
-                                  BuildIconWithText(
-                                    icon: Assets.icons.icLocation,
-                                    text: '100 km',
-                                  ),
+                                  if (state.location != null)
+                                    BuildIconWithText(
+                                      icon: Assets.icons.icLocation,
+                                      text: state.location!.getDistance(
+                                        latitude: house.latitude,
+                                        longitude: house.longitude,
+                                      ),
+                                    ),
                                 ],
                               ),
                             ],

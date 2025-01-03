@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:dtt/api/client/api_client.dart';
+import 'package:dtt/api/client/api_client.dart' if (dart.library.html) 'package:dtt/api/client/api_client_fake.dart'
+    as mp;
 import 'package:dtt/api/models/house.dart';
 import 'package:dtt/core/resources/data_state.dart';
 import 'package:flutter/foundation.dart';
@@ -11,7 +12,7 @@ abstract class ApiRepository {
 
 class ApiRepositoryImpl implements ApiRepository {
   ApiRepositoryImpl(this._apiClient);
-  final ApiClient _apiClient;
+  final mp.ApiClient _apiClient;
 
   @override
   Future<Either<DataFailed<String>, DataSuccess<List<House>>>> fetchHouses() async {

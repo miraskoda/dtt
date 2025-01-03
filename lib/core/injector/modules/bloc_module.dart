@@ -18,6 +18,7 @@ class BlocModule {
       ..registerLazySingleton<MainScreenBloc>(
         () => MainScreenBloc(
           apiRepository: injector(),
+          locationService: injector(),
         ),
       );
   }

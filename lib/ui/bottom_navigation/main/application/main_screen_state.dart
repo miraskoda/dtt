@@ -9,6 +9,7 @@ class MainScreenState with _$MainScreenState {
     @Default([]) List<House> housesData,
     @Default([]) List<House> filteredHouses,
     @Default('') String searchText,
+    LocationData? location,
   }) = _MainScreenState;
 
   factory MainScreenState.init() => const MainScreenState();

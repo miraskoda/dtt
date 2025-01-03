@@ -63,9 +63,8 @@ class _MainScreenState extends State<MainScreen> {
                       flexibleSpace: FlexibleSpaceBar(
                         collapseMode: CollapseMode.none,
                         background: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: AppConstants.kDefaultSpacing,
-                            vertical: AppConstants.kSmallSpacing,
+                          padding: const EdgeInsets.all(
+                            AppConstants.kDefaultSpacing,
                           ),
                           child: SizedBox(
                             height: AppConstants.kLargeSpacing,
@@ -83,7 +82,7 @@ class _MainScreenState extends State<MainScreen> {
                                   decoration: InputDecoration(
                                     isDense: true,
                                     suffixIconConstraints: const BoxConstraints(
-                                      maxHeight: 16,
+                                      maxHeight: AppConstants.kDefaultSpacing,
                                     ),
                                     suffixIcon: state.searchText.isNotEmpty
                                         ? GestureDetector(
@@ -130,9 +129,7 @@ class _MainScreenState extends State<MainScreen> {
                             borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
                           ),
                           child: InkWell(
-                            onTap: () {
-                              context.push(AppRouter.detailPath, extra: house);
-                            },
+                            onTap: () => context.push(AppRouter.detailPath, extra: house),
                             child: PrimaryPadding.md(
                               child: SizedBox(
                                 height: AppConstants.kRealEstateImageSize,
@@ -149,6 +146,11 @@ class _MainScreenState extends State<MainScreen> {
                                           width: AppConstants.kRealEstateImageSize,
                                           height: AppConstants.kRealEstateImageSize,
                                           fit: BoxFit.cover,
+                                          errorBuilder: (_, __, ___) => Assets.images.house6.image(
+                                            height: AppConstants.kRealEstateImageSize,
+                                            width: AppConstants.kRealEstateImageSize,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -183,10 +185,14 @@ class _MainScreenState extends State<MainScreen> {
                                                   icon: Assets.icons.icLayers,
                                                   text: '${house.size} m²',
                                                 ),
-                                                BuildIconWithText(
-                                                  icon: Assets.icons.icLocation,
-                                                  text: '100 km',
-                                                ),
+                                                if (state.location != null)
+                                                  BuildIconWithText(
+                                                    icon: Assets.icons.icLocation,
+                                                    text: state.location!.getDistance(
+                                                      latitude: house.latitude,
+                                                      longitude: house.longitude,
+                                                    ),
+                                                  ),
                                               ],
                                             ),
                                           ],
