@@ -132,7 +132,15 @@ class _MainScreenState extends State<MainScreen> {
               body: Builder(
                 builder: (context) {
                   if (state.isLoading) return const Center(child: PrimaryShimmer());
-                  if (state.isError) return ErrorScreen(state.apiErrorString ?? S.of(context).error);
+                  if (state.isError) {
+                    return GestureDetector(
+                      onTap: () {
+                        Injector.instance<MainScreenBloc>().add(const MainScreenEvent.init());
+                      },
+                      child:
+                          ErrorScreen('${state.apiErrorString ?? S.of(context).error} \n\n Tap here to reload again!'),
+                    );
+                  }
                   if (state.filteredHouses.isEmpty) return const EmptyScreen();
 
                   return RefreshIndicator(

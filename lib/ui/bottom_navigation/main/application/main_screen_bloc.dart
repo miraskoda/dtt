@@ -39,7 +39,15 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     }, (r) {
       //sorting by price
       r.data!.sort((a, b) => a.price.compareTo(b.price));
-      emit(state.copyWith(isLoading: false, housesData: r.data!, filteredHouses: r.data!));
+      emit(
+        state.copyWith(
+          isLoading: false,
+          housesData: r.data!,
+          filteredHouses: r.data!,
+          apiErrorString: null,
+          isError: false,
+        ),
+      );
     });
     // location
     emit(state.copyWith(location: await _getLocation()));
