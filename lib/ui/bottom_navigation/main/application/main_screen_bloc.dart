@@ -20,6 +20,7 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
         ) {
     on<_Init>(_init);
     on<_Search>(_search);
+    on<_ReSort>(_reSort);
   }
 
   final ApiRepository apiRepository;
@@ -36,6 +37,8 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     response.fold((l) {
       emit(state.copyWith(isLoading: false, isError: true, apiErrorString: l.error?.message ?? 'Generic error'));
     }, (r) {
+      //sorting by price
+      r.data!.sort((a, b) => a.price.compareTo(b.price));
       emit(state.copyWith(isLoading: false, housesData: r.data!, filteredHouses: r.data!));
     });
     // location
@@ -57,6 +60,14 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
       state.copyWith(
         searchText: searchText,
         filteredHouses: filteredHouses,
+      ),
+    );
+  }
+
+  Future<void> _reSort(_ReSort e, Emitter<MainScreenState> emit) async {
+    emit(
+      state.copyWith(
+        filteredHouses: state.filteredHouses.reversed.toList(),
       ),
     );
   }

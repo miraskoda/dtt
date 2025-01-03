@@ -69,43 +69,59 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           child: SizedBox(
                             height: AppConstants.kLargeSpacing,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).listTileTheme.tileColor,
-                                borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
-                              ),
-                              child: SizedBox(
-                                height: AppConstants.kLargeSpacing,
-                                child: TextFormField(
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                  onChanged: (String str) =>
-                                      Injector.instance<MainScreenBloc>().add(MainScreenEvent.search(phrase: str)),
-                                  decoration: InputDecoration(
-                                    suffixIconConstraints: const BoxConstraints(
-                                      maxHeight: AppConstants.kDefaultSpacing,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).listTileTheme.tileColor,
+                                      borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
                                     ),
-                                    suffixIcon: state.searchText.isNotEmpty
-                                        ? GestureDetector(
-                                            child: Assets.icons.icClose.svg(),
-                                            onTap: () {
-                                              Injector.instance<MainScreenBloc>()
-                                                  .add(const MainScreenEvent.search(phrase: ''));
-                                              _controller.text = '';
-                                            },
-                                          )
-                                        : Assets.icons.icSearch.svg(
-                                            colorFilter: ColorFilter.mode(
-                                              Theme.of(context).textTheme.bodyLarge!.color!,
-                                              BlendMode.srcIn,
-                                            ),
+                                    child: SizedBox(
+                                      height: AppConstants.kLargeSpacing,
+                                      child: TextFormField(
+                                        style: Theme.of(context).textTheme.bodyLarge,
+                                        onChanged: (String str) => Injector.instance<MainScreenBloc>()
+                                            .add(MainScreenEvent.search(phrase: str)),
+                                        decoration: InputDecoration(
+                                          suffixIconConstraints: const BoxConstraints(
+                                            maxHeight: AppConstants.kDefaultSpacing,
                                           ),
-                                    hintText: S.of(context).search,
-                                    contentPadding: const EdgeInsets.all(AppConstants.kContentPadding),
+                                          suffixIcon: state.searchText.isNotEmpty
+                                              ? GestureDetector(
+                                                  child: Assets.icons.icClose.svg(),
+                                                  onTap: () {
+                                                    Injector.instance<MainScreenBloc>()
+                                                        .add(const MainScreenEvent.search(phrase: ''));
+                                                    _controller.text = '';
+                                                  },
+                                                )
+                                              : Assets.icons.icSearch.svg(
+                                                  colorFilter: ColorFilter.mode(
+                                                    Theme.of(context).textTheme.bodyLarge!.color!,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                ),
+                                          hintText: S.of(context).search,
+                                          contentPadding: const EdgeInsets.all(AppConstants.kContentPadding),
+                                        ),
+                                        controller: _controller,
+                                        focusNode: _focusNode,
+                                      ),
+                                    ),
                                   ),
-                                  controller: _controller,
-                                  focusNode: _focusNode,
                                 ),
-                              ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: AppConstants.kDefaultSpacing),
+                                  child: InkWell(
+                                    onTap: () =>
+                                        Injector.instance<MainScreenBloc>().add(const MainScreenEvent.reSort()),
+                                    child: Assets.icons.icSort.svg(
+                                      height: AppConstants.kDefaultSpacing,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -119,94 +135,99 @@ class _MainScreenState extends State<MainScreen> {
                   if (state.isError) return ErrorScreen(state.apiErrorString ?? S.of(context).error);
                   if (state.filteredHouses.isEmpty) return const EmptyScreen();
 
-                  return ListView.builder(
-                    itemCount: state.filteredHouses.length,
-                    itemBuilder: (_, index) {
-                      final house = state.filteredHouses[index];
-                      return PrimaryPadding.sm(
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
-                          ),
-                          child: InkWell(
-                            onTap: () => context.push(AppRouter.detailPath, extra: house),
-                            child: PrimaryPadding.md(
-                              child: SizedBox(
-                                height: AppConstants.kRealEstateImageSize,
-                                child: Row(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(AppConstants.kNormalBorderRadius),
-                                      ),
-                                      child: Hero(
-                                        tag: house.id,
-                                        child: Image.network(
-                                          house.image.asDttImage(),
-                                          width: AppConstants.kRealEstateImageSize,
-                                          height: AppConstants.kRealEstateImageSize,
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (_, __, ___) => Assets.images.house6.image(
-                                            height: AppConstants.kRealEstateImageSize,
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      Injector.instance<MainScreenBloc>().add(const MainScreenEvent.init());
+                    },
+                    child: ListView.builder(
+                      itemCount: state.filteredHouses.length,
+                      itemBuilder: (_, index) {
+                        final house = state.filteredHouses[index];
+                        return PrimaryPadding.sm(
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
+                            ),
+                            child: InkWell(
+                              onTap: () => context.push(AppRouter.detailPath, extra: house),
+                              child: PrimaryPadding.md(
+                                child: SizedBox(
+                                  height: AppConstants.kRealEstateImageSize,
+                                  child: Row(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(AppConstants.kNormalBorderRadius),
+                                        ),
+                                        child: Hero(
+                                          tag: house.id,
+                                          child: Image.network(
+                                            house.image.asDttImage(),
                                             width: AppConstants.kRealEstateImageSize,
+                                            height: AppConstants.kRealEstateImageSize,
                                             fit: BoxFit.cover,
+                                            errorBuilder: (_, __, ___) => Assets.images.house6.image(
+                                              height: AppConstants.kRealEstateImageSize,
+                                              width: AppConstants.kRealEstateImageSize,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: PrimaryPadding.md(
-                                        top: false,
-                                        bottom: false,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              house.price.asDTTPrice(),
-                                              style: Theme.of(context).textTheme.displaySmall,
-                                            ),
-                                            const PrimarySpacing.gapXxs(),
-                                            Text(
-                                              '${house.zip} - ${house.city}',
-                                              style: Theme.of(context).textTheme.bodyMedium,
-                                            ),
-                                            const Spacer(),
-                                            Row(
-                                              children: [
-                                                BuildIconWithText(
-                                                  icon: Assets.icons.icBed,
-                                                  text: '${house.bedrooms}',
-                                                ),
-                                                BuildIconWithText(
-                                                  icon: Assets.icons.icBath,
-                                                  text: '${house.bathrooms}',
-                                                ),
-                                                BuildIconWithText(
-                                                  icon: Assets.icons.icLayers,
-                                                  text: '${house.size} m²',
-                                                ),
-                                                if (state.location != null)
+                                      Expanded(
+                                        child: PrimaryPadding.md(
+                                          top: false,
+                                          bottom: false,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                house.price.asDTTPrice(),
+                                                style: Theme.of(context).textTheme.displaySmall,
+                                              ),
+                                              const PrimarySpacing.gapXxs(),
+                                              Text(
+                                                '${house.zip} - ${house.city}',
+                                                style: Theme.of(context).textTheme.bodyMedium,
+                                              ),
+                                              const Spacer(),
+                                              Row(
+                                                children: [
                                                   BuildIconWithText(
-                                                    icon: Assets.icons.icLocation,
-                                                    text: state.location!.getDistance(
-                                                      latitude: house.latitude,
-                                                      longitude: house.longitude,
-                                                    ),
+                                                    icon: Assets.icons.icBed,
+                                                    text: '${house.bedrooms}',
                                                   ),
-                                              ],
-                                            ),
-                                          ],
+                                                  BuildIconWithText(
+                                                    icon: Assets.icons.icBath,
+                                                    text: '${house.bathrooms}',
+                                                  ),
+                                                  BuildIconWithText(
+                                                    icon: Assets.icons.icLayers,
+                                                    text: '${house.size} m²',
+                                                  ),
+                                                  if (state.location != null)
+                                                    BuildIconWithText(
+                                                      icon: Assets.icons.icLocation,
+                                                      text: state.location!.getDistance(
+                                                        latitude: house.latitude,
+                                                        longitude: house.longitude,
+                                                      ),
+                                                    ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   );
                 },
               ),

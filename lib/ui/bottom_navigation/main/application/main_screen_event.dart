@@ -6,4 +6,5 @@ class MainScreenEvent with _$MainScreenEvent {
   const factory MainScreenEvent.search({
     required String phrase,
   }) = _Search;
+  const factory MainScreenEvent.reSort() = _ReSort;
 }
