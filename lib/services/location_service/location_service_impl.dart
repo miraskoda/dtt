@@ -5,6 +5,11 @@ class LocationServiceImpl implements LocationService {
   final Location _location = Location();
 
   @override
+  Location get location {
+    return _location;
+  }
+
+  @override
   Future<LocationData?> getCurrentLocation() async {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
