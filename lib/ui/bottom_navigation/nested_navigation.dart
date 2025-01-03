@@ -2,7 +2,7 @@ import 'package:dtt/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-enum NavigationItem { home, info }
+enum NavigationItem { home, info, fav }
 
 class Destination {
   const Destination(this.label, this.icon);
@@ -13,6 +13,7 @@ class Destination {
 final destinations = [
   Destination(NavigationItem.home.name, Assets.icons.icHome),
   Destination(NavigationItem.info.name, Assets.icons.icInfo),
+  Destination(NavigationItem.fav.name, Assets.icons.icFav),
 ];
 
 class NestedNavigation extends StatelessWidget {

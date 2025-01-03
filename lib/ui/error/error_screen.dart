@@ -5,8 +5,13 @@ import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:flutter/material.dart';
 
 class ErrorScreen extends StatefulWidget {
-  const ErrorScreen(this.error, {super.key});
+  const ErrorScreen(
+    this.error, {
+    required this.isFavorite,
+    super.key,
+  });
   final String error;
+  final bool isFavorite;
 
   @override
   State<ErrorScreen> createState() => _ErrorScreenState();
@@ -17,7 +22,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Injector.instance<MainScreenBloc>().add(const MainScreenEvent.init());
+        Injector.instance<MainScreenBloc>().add(MainScreenEvent.init(isFavorite: widget.isFavorite));
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

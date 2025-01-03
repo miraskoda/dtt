@@ -14,6 +14,7 @@ final _navigatorKey = GlobalKey<NavigatorState>();
 
 final _mainKey = GlobalKey<NavigatorState>();
 final _infoKey = GlobalKey<NavigatorState>();
+final _favKey = GlobalKey<NavigatorState>();
 
 class AppRouter {
   AppRouter._();
@@ -29,6 +30,9 @@ class AppRouter {
 
   static const String info = 'info';
   static const String infoPath = '/info';
+
+  static const String fav = 'fav';
+  static const String favPath = '/fav';
 
   static GoRouter get router => _router;
   static final _router = GoRouter(
@@ -80,6 +84,19 @@ class AppRouter {
                 path: infoPath,
                 pageBuilder: (context, state) => const NoTransitionPage(
                   child: InfoScreen(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _favKey,
+            routes: [
+              GoRoute(
+                path: favPath,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: MainScreen(
+                    isFavorite: true,
+                  ),
                 ),
               ),
             ],

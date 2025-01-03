@@ -22,7 +22,7 @@ class AppServiceImpl implements AppService {
 
   @override
   Future<void> setIsDarkMode({required bool darkMode}) async {
-    return _localStorageService.setValue(
+    return _localStorageService.setBool(
       key: AppKeys.darkModeKey,
       value: darkMode,
     );
@@ -30,7 +30,7 @@ class AppServiceImpl implements AppService {
 
   @override
   Future<void> setLocale({required String locale}) async {
-    return _localStorageService.setValue(
+    return _localStorageService.setString(
       key: AppKeys.localeKey,
       value: locale,
     );

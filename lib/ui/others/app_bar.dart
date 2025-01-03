@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 
 class PrimaryAppbar extends StatelessWidget implements PreferredSizeWidget {
   const PrimaryAppbar({
+    this.isFavorite = false,
     super.key,
   });
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
-        S.of(context).appBarTitle,
+        isFavorite ? 'Favorite items' : S.of(context).appBarTitle,
         style: Theme.of(context).textTheme.displaySmall,
       ),
     );

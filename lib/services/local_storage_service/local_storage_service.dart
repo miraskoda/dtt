@@ -3,9 +3,18 @@ import 'dart:async';
 abstract class LocalStorageService {
   FutureOr<void> init();
 
-  FutureOr<void> setValue({
+  FutureOr<void> setString({
     required String key,
-    required dynamic value,
+    required String value,
+  });
+  FutureOr<void> setBool({
+    required String key,
+    required bool value,
+  });
+
+  FutureOr<void> setStringList({
+    required String key,
+    required List<String> value,
   });
 
   Object? getValue({

@@ -1,5 +1,6 @@
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/injector/injector.dart';
+import 'package:dtt/core/keys/app_keys.dart';
 import 'package:dtt/generated/assets.gen.dart';
 import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
@@ -12,7 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({this.isFavorite = false, super.key});
+  final bool isFavorite;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -43,9 +45,10 @@ class _MainScreenState extends State<MainScreen> {
         _focusNode.unfocus();
       },
       child: BlocProvider(
-        create: (_) => Injector.instance<MainScreenBloc>()..add(const MainScreenEvent.init()),
+        create: (_) => Injector.instance<MainScreenBloc>(instanceName: widget.isFavorite ? AppKeys.favConst : null)
+          ..add(MainScreenEvent.init(isFavorite: widget.isFavorite)),
         child: Scaffold(
-          appBar: const PrimaryAppbar(),
+          appBar: PrimaryAppbar(isFavorite: widget.isFavorite),
           body: BlocBuilder<MainScreenBloc, MainScreenState>(
             builder: (context, state) => NestedScrollView(
               floatHeaderSlivers: true,
@@ -76,8 +79,9 @@ class _MainScreenState extends State<MainScreen> {
                                       height: AppConstants.kLargeSpacing,
                                       child: TextFormField(
                                         style: Theme.of(context).textTheme.bodyLarge,
-                                        onChanged: (String str) => Injector.instance<MainScreenBloc>()
-                                            .add(MainScreenEvent.search(phrase: str)),
+                                        onChanged: (String str) => Injector.instance<MainScreenBloc>(
+                                          instanceName: widget.isFavorite ? AppKeys.favConst : null,
+                                        ).add(MainScreenEvent.search(phrase: str)),
                                         decoration: InputDecoration(
                                           suffixIconConstraints: const BoxConstraints(
                                             maxHeight: AppConstants.kDefaultSpacing,
@@ -86,8 +90,9 @@ class _MainScreenState extends State<MainScreen> {
                                               ? GestureDetector(
                                                   child: Assets.icons.icClose.svg(),
                                                   onTap: () {
-                                                    Injector.instance<MainScreenBloc>()
-                                                        .add(const MainScreenEvent.search(phrase: ''));
+                                                    Injector.instance<MainScreenBloc>(
+                                                      instanceName: widget.isFavorite ? AppKeys.favConst : null,
+                                                    ).add(const MainScreenEvent.search(phrase: ''));
                                                     _controller.text = '';
                                                   },
                                                 )
@@ -109,8 +114,9 @@ class _MainScreenState extends State<MainScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: AppConstants.kDefaultSpacing),
                                   child: InkWell(
-                                    onTap: () =>
-                                        Injector.instance<MainScreenBloc>().add(const MainScreenEvent.reSort()),
+                                    onTap: () => Injector.instance<MainScreenBloc>(
+                                      instanceName: widget.isFavorite ? AppKeys.favConst : null,
+                                    ).add(const MainScreenEvent.reSort()),
                                     child: Assets.icons.icSort.svg(
                                       height: AppConstants.kDefaultSpacing,
                                       colorFilter: ColorFilter.mode(
@@ -132,18 +138,30 @@ class _MainScreenState extends State<MainScreen> {
                 builder: (context) {
                   if (state.isLoading) return const Center(child: PrimaryShimmer());
                   if (state.isError) {
-                    return ErrorScreen('${state.apiErrorString ?? S.of(context).error} \n\n Tap here to reload again!');
+                    return ErrorScreen(
+                      '${state.apiErrorString ?? S.of(context).error} \n\n Tap here to reload again!',
+                      isFavorite: widget.isFavorite,
+                    );
                   }
-                  if (state.filteredHouses.isEmpty) return const EmptyScreen();
+                  if (state.filteredHouses.isEmpty) {
+                    return EmptyScreen(
+                      isFavorite: widget.isFavorite,
+                    );
+                  }
                   return RefreshIndicator(
                     onRefresh: () async {
-                      Injector.instance<MainScreenBloc>().add(const MainScreenEvent.init());
+                      Injector.instance<MainScreenBloc>(instanceName: widget.isFavorite ? AppKeys.favConst : null)
+                          .add(MainScreenEvent.init(isFavorite: widget.isFavorite));
                     },
                     child: ListView.builder(
                       itemCount: state.filteredHouses.length,
                       itemBuilder: (_, index) {
                         final house = state.filteredHouses[index];
-                        return HouseItem(house, state.location);
+                        return HouseItem(
+                          house,
+                          state.location,
+                          isFavorite: widget.isFavorite,
+                        );
                       },
                     ),
                   );

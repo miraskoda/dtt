@@ -19,9 +19,7 @@ class ServiceModule {
     injector
       ..registerFactory<LogService>(DebugLogService.new)
       ..registerSingleton<LocalStorageService>(
-        SharedPreferencesService(
-          logService: injector(),
-        ),
+        SharedPreferencesService(),
         signalsReady: true,
       )
       ..registerSingletonAsync<CrashlyticsService>(() async {
