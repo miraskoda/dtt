@@ -15,5 +15,37 @@
     "emptyResult": "Geen resultaat gevonden!\nMisschien een andere zoekopdracht proberen?",
     "@emptyResult": {
         "description": "Empty result text"
+    },
+    "description": "Beschrijving",
+    "@description": {
+        "description": "Description"
+    },
+    "location": "Locatie",
+    "@location": {
+        "description": "Location text"
+    },
+    "openMap": "Kaart openen",
+    "@openMap": {
+        "description": "Open map text"
+    },
+    "about": "Over",
+    "@about": {
+        "description": "About text"
+    },
+    "designAndDevelopment": "Ontwerp en ontwikkeling",
+    "@designAndDevelopment": {
+        "description": "Design and development text"
+    },
+    "language": "Taal",
+    "@language": {
+        "description": "Language text"
+    },
+    "darkMode": "Dark mode",
+    "@darkMode": {
+        "description": "Dark mode text"
+    },
+    "locationServices": "Locatiediensten",
+    "@locationServices": {
+        "description": "Location text"
     }
 }

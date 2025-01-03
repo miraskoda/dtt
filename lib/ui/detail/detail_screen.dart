@@ -6,6 +6,7 @@ import 'package:dtt/core/extensions/app_extensions.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/core/utils/map_launcher.dart';
 import 'package:dtt/generated/assets.gen.dart';
+import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/theme/app_themes.dart';
 import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
 import 'package:dtt/ui/others/build_icon_with_text.dart';
@@ -134,12 +135,12 @@ class DetailScreen extends StatelessWidget {
                       ),
                       const PrimarySpacing.gapLg(),
                       Text(
-                        'Description',
+                        S.of(context).description,
                         style: Theme.of(context).textTheme.displayLarge,
                       ),
                       const PrimarySpacing.gapMd(),
                       Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo ligula id quam vestibulum, at aliquam ex mollis.',
+                        house.description,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const PrimarySpacing.gapLg(),
@@ -147,13 +148,13 @@ class DetailScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Location',
+                            S.of(context).location,
                             style: Theme.of(context).textTheme.displayLarge,
                           ),
                           InkWell(
                             onTap: () => MapLauncher.launchFromCoordinates(LatLng(house.latitude, house.longitude)),
                             child: Text(
-                              'Open in maps',
+                              S.of(context).openMap,
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),

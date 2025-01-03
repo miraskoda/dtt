@@ -15,5 +15,37 @@
     "emptyResult": "No result found!\nPerhaps try another search?",
     "@emptyResult": {
         "description": "Empty result text"
+    },
+    "description": "Description",
+    "@description": {
+        "description": "Description"
+    },
+    "location": "Location",
+    "@location": {
+        "description": "Location text"
+    },
+    "openMap": "Open map",
+    "@openMap": {
+        "description": "Open map text"
+    },
+    "about": "About",
+    "@about": {
+        "description": "About text"
+    },
+    "designAndDevelopment": "Design and Development",
+    "@designAndDevelopment": {
+        "description": "Design and development text"
+    },
+    "language": "Language",
+    "@language": {
+        "description": "Language text"
+    },
+    "darkMode": "Dark mode",
+    "@darkMode": {
+        "description": "Dark mode text"
+    },
+    "locationServices": "Location services",
+    "@locationServices": {
+        "description": "Location text"
     }
 }

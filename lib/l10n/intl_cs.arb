@@ -15,5 +15,37 @@
     "emptyResult": "Prazdno, zkuste hledat jinou frazi",
     "@emptyResult": {
         "description": "Empty result text"
+    },
+    "description": "Popis",
+    "@description": {
+        "description": "Description"
+    },
+    "location": "Lokace",
+    "@location": {
+        "description": "Location text"
+    },
+    "openMap": "Otevrit mapu",
+    "@openMap": {
+        "description": "Open map text"
+    },
+    "about": "O nas",
+    "@about": {
+        "description": "About text"
+    },
+    "designAndDevelopment": "Design a Development",
+    "@designAndDevelopment": {
+        "description": "Design and development text"
+    },
+    "language": "Jazyk",
+    "@language": {
+        "description": "Language text"
+    },
+    "darkMode": "Dark mode",
+    "@darkMode": {
+        "description": "Dark mode text"
+    },
+    "locationServices": "Sluzby lokace",
+    "@locationServices": {
+        "description": "Location text"
     }
 }

@@ -2,6 +2,7 @@ import 'package:dtt/core/app_config.dart';
 import 'package:dtt/core/bloc/app_bloc.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/utils/url_lancher.dart';
+import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/ui/bottom_navigation/info/dark_mode_list_tile.dart';
 import 'package:dtt/ui/bottom_navigation/info/lang_list_tile.dart';
 import 'package:dtt/ui/bottom_navigation/info/location_settings_page.dart';
@@ -24,7 +25,7 @@ class InfoScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'ABOUT',
+                S.of(context).about,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const PrimarySpacing.gapMd(),
@@ -34,7 +35,7 @@ class InfoScreen extends StatelessWidget {
               ),
               const PrimarySpacing.gapMd(),
               Text(
-                'Design and Development',
+                S.of(context).designAndDevelopment,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const PrimarySpacing.gapMd(),
@@ -72,7 +73,7 @@ class InfoScreen extends StatelessWidget {
               ),
               const PrimarySpacing.gapLg(),
               Text(
-                'Language',
+                S.of(context).language,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const PrimarySpacing.gapMd(),
@@ -81,14 +82,14 @@ class InfoScreen extends StatelessWidget {
               LangListTile(locale: locale, lang: 'nl', title: 'Dutch'),
               const PrimarySpacing.gapMd(),
               Text(
-                'Dark mode selector',
+                S.of(context).darkMode,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const PrimarySpacing.gapMd(),
               const DarkModeListTile(),
               const PrimarySpacing.gapMd(),
               Text(
-                'Location services',
+                S.of(context).locationServices,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const PrimarySpacing.gapMd(),
