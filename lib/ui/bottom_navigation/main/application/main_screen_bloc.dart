@@ -53,26 +53,26 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
           isError: false,
         ),
       );
-      return;
+    } else {
+      //fetch houses
+      final response = await apiRepository.fetchHouses();
+      response.fold((l) {
+        emit(state.copyWith(isLoading: false, isError: true, apiErrorString: l.error?.message ?? 'Generic error'));
+      }, (r) {
+        final housesData = processHouses(
+          r.data!,
+        );
+        emit(
+          state.copyWith(
+            isLoading: false,
+            housesData: r.data!,
+            filteredHouses: housesData,
+            apiErrorString: null,
+            isError: false,
+          ),
+        );
+      });
     }
-    //fetch houses
-    final response = await apiRepository.fetchHouses();
-    response.fold((l) {
-      emit(state.copyWith(isLoading: false, isError: true, apiErrorString: l.error?.message ?? 'Generic error'));
-    }, (r) {
-      final housesData = processHouses(
-        r.data!,
-      );
-      emit(
-        state.copyWith(
-          isLoading: false,
-          housesData: r.data!,
-          filteredHouses: housesData,
-          apiErrorString: null,
-          isError: false,
-        ),
-      );
-    });
 
     // location
     emit(state.copyWith(location: await _getLocation()));
