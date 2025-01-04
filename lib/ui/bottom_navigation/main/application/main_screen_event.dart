@@ -9,6 +9,5 @@ class MainScreenEvent with _$MainScreenEvent {
   const factory MainScreenEvent.reSort() = _ReSort;
   const factory MainScreenEvent.toggleFav({
     required String id,
-    required bool isFavorite,
   }) = _ToggleFav;
 }

@@ -36,40 +36,57 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     emit(
       state.copyWith(
         isLoading: true,
+        isFavorite: e.isFavorite,
       ),
     );
+    //if there is some data already, not need to perform request
+    if (state.housesData.isNotEmpty) {
+      final housesData = processHouses(
+        state.housesData,
+      );
+      emit(
+        state.copyWith(
+          isLoading: false,
+          housesData: state.housesData,
+          filteredHouses: housesData,
+          apiErrorString: null,
+          isError: false,
+        ),
+      );
+      return;
+    }
     //fetch houses
     final response = await apiRepository.fetchHouses();
     response.fold((l) {
       emit(state.copyWith(isLoading: false, isError: true, apiErrorString: l.error?.message ?? 'Generic error'));
     }, (r) {
-      makeSortAndFavs(isFavorite: e.isFavorite, emit, r.data!);
+      final housesData = processHouses(
+        r.data!,
+      );
+      emit(
+        state.copyWith(
+          isLoading: false,
+          housesData: r.data!,
+          filteredHouses: housesData,
+          apiErrorString: null,
+          isError: false,
+        ),
+      );
     });
 
     // location
     emit(state.copyWith(location: await _getLocation()));
   }
 
-  void makeSortAndFavs(
-    Emitter<MainScreenState> emit,
-    List<House> houses, {
-    required bool isFavorite,
-  }) {
+  List<House> processHouses(
+    List<House> houses,
+  ) {
     //sorting by price and checking favs
-    // ignore: prefer_final_locals
-    List<House> newHouses = List.from(houses)..sort((a, b) => a.price.compareTo(b.price));
+    final List<House> newHouses = List.from(houses)..sort((a, b) => a.price.compareTo(b.price));
     final List<House> housesData = newHouses.where((house) {
-      return !isFavorite || isInFavorites(house.id);
+      return !state.isFavorite || isInFavorites(house.id);
     }).toList();
-    emit(
-      state.copyWith(
-        isLoading: false,
-        housesData: housesData,
-        filteredHouses: housesData,
-        apiErrorString: null,
-        isError: false,
-      ),
-    );
+    return housesData;
   }
 
   Future<LocationData?> _getLocation() async {
@@ -86,7 +103,9 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     emit(
       state.copyWith(
         searchText: searchText,
-        filteredHouses: filteredHouses,
+        filteredHouses: processHouses(
+          filteredHouses,
+        ),
       ),
     );
   }
@@ -100,23 +119,20 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   }
 
   Future<void> _toggleFav(_ToggleFav e, Emitter<MainScreenState> emit) async {
-    // ignore: prefer_final_locals
-    List<String> list = localStorageService.getStringList(key: AppKeys.favConst) ?? [];
+    final List<String> list = localStorageService.getStringList(key: AppKeys.favConst) ?? [];
 
-    if (e.isFavorite) {
+    if (state.isFavorite) {
       final int index = list.indexOf(e.id);
       list.removeAt(index);
       localStorageService.setStringList(key: AppKeys.favConst, value: list);
-      final List<House> houses = state.housesData;
-      makeSortAndFavs(emit, houses, isFavorite: e.isFavorite);
     } else {
       if (list.contains(e.id)) {
         return;
       }
       localStorageService.setStringList(key: AppKeys.favConst, value: [...list, e.id]);
-      Injector.instance<MainScreenBloc>(instanceName: AppKeys.favConst)
-          .add(const MainScreenEvent.init(isFavorite: true));
     }
+    // reload data in fav bloc
+    Injector.instance<MainScreenBloc>(instanceName: AppKeys.favConst).add(const MainScreenEvent.init(isFavorite: true));
   }
 
   bool isInFavorites(int id) {

@@ -72,7 +72,7 @@ class AppRouter {
               GoRoute(
                 path: mainPath,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: MainScreen(),
+                  child: MainScreen.main(),
                 ),
               ),
             ],
@@ -94,9 +94,7 @@ class AppRouter {
               GoRoute(
                 path: favPath,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: MainScreen(
-                    isFavorite: true,
-                  ),
+                  child: MainScreen.favorite(),
                 ),
               ),
             ],

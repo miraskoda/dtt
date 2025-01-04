@@ -13,7 +13,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({this.isFavorite = false, super.key});
+  const MainScreen._({this.isFavorite = false, super.key});
+
+  const MainScreen.favorite({
+    Key? key,
+  }) : this._(isFavorite: true, key: key);
+
+  const MainScreen.main({
+    Key? key,
+  }) : this._(isFavorite: false, key: key);
+
   final bool isFavorite;
 
   @override
@@ -40,13 +49,13 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Injector.instance<MainScreenBloc>(instanceName: widget.isFavorite ? AppKeys.favConst : null);
     return GestureDetector(
       onTap: () {
         _focusNode.unfocus();
       },
       child: BlocProvider(
-        create: (_) => Injector.instance<MainScreenBloc>(instanceName: widget.isFavorite ? AppKeys.favConst : null)
-          ..add(MainScreenEvent.init(isFavorite: widget.isFavorite)),
+        create: (_) => bloc..add(MainScreenEvent.init(isFavorite: widget.isFavorite)),
         child: Scaffold(
           appBar: PrimaryAppbar(isFavorite: widget.isFavorite),
           body: BlocBuilder<MainScreenBloc, MainScreenState>(
@@ -79,9 +88,7 @@ class _MainScreenState extends State<MainScreen> {
                                       height: AppConstants.kLargeSpacing,
                                       child: TextFormField(
                                         style: Theme.of(context).textTheme.bodyLarge,
-                                        onChanged: (String str) => Injector.instance<MainScreenBloc>(
-                                          instanceName: widget.isFavorite ? AppKeys.favConst : null,
-                                        ).add(MainScreenEvent.search(phrase: str)),
+                                        onChanged: (String str) => bloc.add(MainScreenEvent.search(phrase: str)),
                                         decoration: InputDecoration(
                                           suffixIconConstraints: const BoxConstraints(
                                             maxHeight: AppConstants.kDefaultSpacing,
@@ -90,9 +97,7 @@ class _MainScreenState extends State<MainScreen> {
                                               ? GestureDetector(
                                                   child: Assets.icons.icClose.svg(),
                                                   onTap: () {
-                                                    Injector.instance<MainScreenBloc>(
-                                                      instanceName: widget.isFavorite ? AppKeys.favConst : null,
-                                                    ).add(const MainScreenEvent.search(phrase: ''));
+                                                    bloc.add(const MainScreenEvent.search(phrase: ''));
                                                     _controller.text = '';
                                                   },
                                                 )
@@ -114,9 +119,7 @@ class _MainScreenState extends State<MainScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: AppConstants.kDefaultSpacing),
                                   child: InkWell(
-                                    onTap: () => Injector.instance<MainScreenBloc>(
-                                      instanceName: widget.isFavorite ? AppKeys.favConst : null,
-                                    ).add(const MainScreenEvent.reSort()),
+                                    onTap: () => bloc.add(const MainScreenEvent.reSort()),
                                     child: Assets.icons.icSort.svg(
                                       height: AppConstants.kDefaultSpacing,
                                       colorFilter: ColorFilter.mode(
@@ -150,8 +153,7 @@ class _MainScreenState extends State<MainScreen> {
                   }
                   return RefreshIndicator(
                     onRefresh: () async {
-                      Injector.instance<MainScreenBloc>(instanceName: widget.isFavorite ? AppKeys.favConst : null)
-                          .add(MainScreenEvent.init(isFavorite: widget.isFavorite));
+                      bloc.add(MainScreenEvent.init(isFavorite: widget.isFavorite));
                     },
                     child: ListView.builder(
                       itemCount: state.filteredHouses.length,

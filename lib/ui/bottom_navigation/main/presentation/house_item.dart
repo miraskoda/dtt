@@ -21,6 +21,7 @@ class HouseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Injector.instance<MainScreenBloc>(instanceName: isFavorite ? AppKeys.favConst : null);
     return Dismissible(
       confirmDismiss: (direction) async {
         if (!isFavorite) {
@@ -29,13 +30,11 @@ class HouseItem extends StatelessWidget {
         return direction == DismissDirection.endToStart;
       },
       direction: !isFavorite ? DismissDirection.startToEnd : DismissDirection.endToStart,
-      onDismissed: (direction) {},
       onUpdate: (details) {
         if (details.reached && !details.previousReached) {
-          Injector.instance<MainScreenBloc>(instanceName: isFavorite ? AppKeys.favConst : null).add(
+          bloc.add(
             MainScreenEvent.toggleFav(
               id: house.id.toString(),
-              isFavorite: isFavorite,
             ),
           );
         }
@@ -110,10 +109,7 @@ class HouseItem extends StatelessWidget {
                                   house.price.asDTTPrice(),
                                   style: Theme.of(context).textTheme.displaySmall,
                                 ),
-                                if (Injector.instance<MainScreenBloc>(
-                                      instanceName: isFavorite ? AppKeys.favConst : null,
-                                    ).isInFavorites(house.id) &&
-                                    isFavorite)
+                                if (bloc.isInFavorites(house.id) && isFavorite)
                                   Assets.icons.icFav.svg(
                                     colorFilter: ColorFilter.mode(
                                       Theme.of(context).textTheme.bodyLarge!.color!,
