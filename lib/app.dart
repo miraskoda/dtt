@@ -1,6 +1,7 @@
 import 'package:device_frame_plus/device_frame_plus.dart';
 import 'package:dtt/core/bloc/app_bloc.dart';
 import 'package:dtt/core/bloc_core/ui_status.dart';
+import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/core/router/app_router.dart';
 import 'package:dtt/generated/l10n.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -70,6 +72,10 @@ class _App extends StatelessWidget {
     );
 
     final app = MaterialApp.router(
+      builder: (context, child) => ResponsiveBreakpoints.builder(
+        child: child!,
+        breakpoints: Breakpoints.all,
+      ),
       localizationsDelegates: const [
         AppLocalizationDelegate(),
         GlobalMaterialLocalizations.delegate,
