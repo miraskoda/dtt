@@ -1,7 +1,5 @@
 import 'package:dtt/core/bloc/house_bloc/house_bloc.dart';
 import 'package:dtt/core/bloc/location_bloc/location_bloc.dart';
-import 'package:dtt/core/bloc/location_bloc/location_event.dart';
-import 'package:dtt/core/bloc/location_bloc/location_state.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/generated/assets.gen.dart';
@@ -51,7 +49,7 @@ class _HouseState extends State<MainScreen> {
             create: (_) => Injector.instance<HouseBloc>()..add(const HouseEvent.init()),
           ),
           BlocProvider(
-            create: (_) => Injector.instance<LocationBloc>()..add(GetLocationEvent()),
+            create: (_) => Injector.instance<LocationBloc>()..add(const GetLocationEvent()),
           ),
         ],
         child: Scaffold(

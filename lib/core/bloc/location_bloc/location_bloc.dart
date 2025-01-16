@@ -1,21 +1,25 @@
 import 'dart:async';
 
 import 'package:app_settings/app_settings.dart';
-import 'package:dtt/core/bloc/location_bloc/location_event.dart';
-import 'package:dtt/core/bloc/location_bloc/location_state.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/services/location_service/location_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:location/location.dart';
+
+part 'location_bloc.freezed.dart';
+part 'location_event.dart';
+part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   LocationBloc({
     required this.locationService,
-  }) : super(LocationInitial()) {
+  }) : super(LocationState.init()) {
     on<CheckLocationStatus>(_onCheckLocationStatus);
     on<OpenAppSettings>(_onOpenAppSettings);
     on<GetLocationEvent>(_onGetLocation);
   }
+
   final LocationService locationService;
   final Location _location = Injector.instance<LocationService>().location;
 
@@ -23,14 +27,14 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     CheckLocationStatus event,
     Emitter<LocationState> emit,
   ) async {
-    emit(LocationLoading(locationData: state.locationData));
+    emit(state.copyWith(isLoading: true, isError: false));
 
     try {
       bool serviceEnabled = await _location.serviceEnabled();
       if (!serviceEnabled) {
         serviceEnabled = await _location.requestService();
         if (!serviceEnabled) {
-          emit(LocationServiceDisabled(locationData: state.locationData));
+          emit(state.copyWith(isLoading: false, isError: true, errorMessage: 'Location service is disabled.'));
           return;
         }
       }
@@ -39,14 +43,18 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       if (permissionGranted == PermissionStatus.denied) {
         permissionGranted = await _location.requestPermission();
         if (permissionGranted != PermissionStatus.granted) {
-          emit(LocationPermissionDenied(locationData: state.locationData));
+          emit(state.copyWith(isLoading: false, isError: true, errorMessage: 'Permission denied.'));
           return;
         }
       }
 
-      emit(LocationEnabled(locationData: state.locationData));
+      emit(
+        state.copyWith(
+          isLoading: false,
+        ),
+      );
     } catch (e) {
-      emit(LocationError(e.toString(), locationData: state.locationData));
+      emit(state.copyWith(isLoading: false, isError: true, errorMessage: e.toString()));
     }
   }
 
@@ -62,12 +70,13 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     Emitter<LocationState> emit,
   ) async {
     if (state.locationData != null) return;
-    emit(LocationLoading(locationData: state.locationData));
+    emit(state.copyWith(isLoading: true, isError: false));
+
     try {
       final locationData = await locationService.getCurrentLocation();
-      emit(LocationDataState(locationData: locationData));
+      emit(state.copyWith(isLoading: false, locationData: locationData));
     } catch (e) {
-      emit(LocationError(e.toString(), locationData: state.locationData));
+      emit(state.copyWith(isLoading: false, isError: true, errorMessage: e.toString()));
     }
   }
 }

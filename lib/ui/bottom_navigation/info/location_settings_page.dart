@@ -1,6 +1,4 @@
 import 'package:dtt/core/bloc/location_bloc/location_bloc.dart';
-import 'package:dtt/core/bloc/location_bloc/location_event.dart';
-import 'package:dtt/core/bloc/location_bloc/location_state.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:flutter/material.dart';
@@ -12,40 +10,28 @@ class LocationSettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => Injector.instance<LocationBloc>()..add(CheckLocationStatus()),
+      create: (context) => Injector.instance<LocationBloc>()..add(const CheckLocationStatus()),
       child: BlocBuilder<LocationBloc, LocationState>(
         builder: (context, state) {
-          if (state is LocationLoading) {
+          if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state is LocationEnabled) {
+          } else if (state.isError) {
+            return _buildStatusMessage(
+              context,
+              'Error occurred: ${state.errorMessage ?? 'Unknown error'}',
+              Colors.red,
+            );
+          } else if (state.locationData != null) {
             return _buildStatusMessage(
               context,
               'Location is active and working.',
               Colors.green,
             );
-          } else if (state is LocationPermissionDenied) {
-            return _buildStatusMessage(
-              context,
-              'Location access denied',
-              Colors.red,
-            );
-          } else if (state is LocationServiceDisabled) {
-            return _buildStatusMessage(
-              context,
-              'Location services are not enabled.',
-              Colors.orange,
-            );
-          } else if (state is LocationError) {
-            return _buildStatusMessage(
-              context,
-              'Error occured: ${state.message}',
-              Colors.red,
-            );
           } else {
             return Center(
               child: ElevatedButton(
                 onPressed: () {
-                  context.read<LocationBloc>().add(CheckLocationStatus());
+                  context.read<LocationBloc>().add(const CheckLocationStatus());
                 },
                 child: const Text('Check again'),
               ),
@@ -70,7 +56,7 @@ class LocationSettingsTile extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  context.read<LocationBloc>().add(CheckLocationStatus());
+                  context.read<LocationBloc>().add(const CheckLocationStatus());
                 },
                 child: Text(
                   'Check again',
@@ -80,7 +66,7 @@ class LocationSettingsTile extends StatelessWidget {
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  context.read<LocationBloc>().add(OpenAppSettings());
+                  context.read<LocationBloc>().add(const OpenAppSettings());
                 },
                 child: Text(
                   'Open settings',

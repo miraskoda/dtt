@@ -1,34 +1,13 @@
-import 'package:location/location.dart';
+part of 'location_bloc.dart';
 
-abstract class LocationState {
-  LocationState({this.locationData});
+@Freezed()
+class LocationState with _$LocationState {
+  const factory LocationState({
+    @Default(false) bool isLoading,
+    @Default(false) bool isError,
+    String? errorMessage,
+    LocationData? locationData,
+  }) = _LocationState;
 
-  final LocationData? locationData;
-}
-
-class LocationInitial extends LocationState {}
-
-class LocationLoading extends LocationState {
-  LocationLoading({super.locationData});
-}
-
-class LocationEnabled extends LocationState {
-  LocationEnabled({super.locationData});
-}
-
-class LocationPermissionDenied extends LocationState {
-  LocationPermissionDenied({super.locationData});
-}
-
-class LocationServiceDisabled extends LocationState {
-  LocationServiceDisabled({super.locationData});
-}
-
-class LocationError extends LocationState {
-  LocationError(this.message, {super.locationData});
-  final String message;
-}
-
-class LocationDataState extends LocationState {
-  LocationDataState({required super.locationData});
+  factory LocationState.init() => const LocationState();
 }
