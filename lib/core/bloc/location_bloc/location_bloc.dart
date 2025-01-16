@@ -23,14 +23,14 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     CheckLocationStatus event,
     Emitter<LocationState> emit,
   ) async {
-    emit(LocationLoading());
+    emit(LocationLoading(locationData: state.locationData));
 
     try {
       bool serviceEnabled = await _location.serviceEnabled();
       if (!serviceEnabled) {
         serviceEnabled = await _location.requestService();
         if (!serviceEnabled) {
-          emit(LocationServiceDisabled());
+          emit(LocationServiceDisabled(locationData: state.locationData));
           return;
         }
       }
@@ -39,14 +39,14 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       if (permissionGranted == PermissionStatus.denied) {
         permissionGranted = await _location.requestPermission();
         if (permissionGranted != PermissionStatus.granted) {
-          emit(LocationPermissionDenied());
+          emit(LocationPermissionDenied(locationData: state.locationData));
           return;
         }
       }
 
-      emit(LocationEnabled());
+      emit(LocationEnabled(locationData: state.locationData));
     } catch (e) {
-      emit(LocationError(e.toString()));
+      emit(LocationError(e.toString(), locationData: state.locationData));
     }
   }
 
@@ -61,13 +61,13 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     GetLocationEvent event,
     Emitter<LocationState> emit,
   ) async {
-    if (state is LocationDataState) return;
-    emit(LocationLoading());
+    if (state.locationData != null) return;
+    emit(LocationLoading(locationData: state.locationData));
     try {
       final locationData = await locationService.getCurrentLocation();
-      emit(LocationDataState(locationData));
+      emit(LocationDataState(locationData: locationData));
     } catch (e) {
-      emit(LocationError(e.toString()));
+      emit(LocationError(e.toString(), locationData: state.locationData));
     }
   }
 }

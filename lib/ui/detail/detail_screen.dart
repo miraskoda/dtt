@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dtt/api/models/house.dart';
 import 'package:dtt/core/bloc/location_bloc/location_bloc.dart';
-import 'package:dtt/core/bloc/location_bloc/location_state.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
 import 'package:dtt/core/injector/injector.dart';
@@ -113,7 +112,7 @@ class DetailScreen extends StatelessWidget {
                                 icon: Assets.icons.icLayers,
                                 text: '${house.size} m²',
                               ),
-                              if (state is LocationDataState)
+                              if (state.locationData != null)
                                 BuildIconWithText(
                                   icon: Assets.icons.icLocation,
                                   text: state.locationData!.getDistance(
