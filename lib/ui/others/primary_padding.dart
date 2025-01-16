@@ -2,6 +2,7 @@ import 'package:dtt/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryPadding extends StatelessWidget {
+  /// 2px padding
   const PrimaryPadding.xxs({
     required Widget child,
     bool top = true,
@@ -11,6 +12,7 @@ class PrimaryPadding extends StatelessWidget {
     Key? key,
   }) : this._(AppConstants.kTinySpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
+  /// 4px padding
   const PrimaryPadding.xs({
     required Widget child,
     bool top = true,
@@ -20,6 +22,7 @@ class PrimaryPadding extends StatelessWidget {
     Key? key,
   }) : this._(AppConstants.kXSmallSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
+  /// 8px padding
   const PrimaryPadding.sm({
     required Widget child,
     bool top = true,
@@ -29,6 +32,7 @@ class PrimaryPadding extends StatelessWidget {
     Key? key,
   }) : this._(AppConstants.kSmallSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
+  /// 16 px padding
   const PrimaryPadding.md({
     required Widget child,
     bool top = true,
@@ -38,6 +42,7 @@ class PrimaryPadding extends StatelessWidget {
     Key? key,
   }) : this._(AppConstants.kDefaultSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
+  /// 32 px padding
   const PrimaryPadding.lg({
     required Widget child,
     bool top = true,
@@ -47,6 +52,7 @@ class PrimaryPadding extends StatelessWidget {
     Key? key,
   }) : this._(AppConstants.kLargeSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
+  /// 48 px padding
   const PrimaryPadding.xl({
     required Widget child,
     bool top = true,
@@ -56,6 +62,7 @@ class PrimaryPadding extends StatelessWidget {
     Key? key,
   }) : this._(AppConstants.kXLargeSpacing, child, key: key, top: top, bottom: bottom, left: left, right: right);
 
+  /// 64 px padding
   const PrimaryPadding.xxl({
     required Widget child,
     bool top = true,

@@ -4,6 +4,7 @@ import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:flutter/material.dart';
 
 class BuildIconWithText extends StatelessWidget {
+  /// DTT icon with small belonging text as a label for DTT house item
   const BuildIconWithText({
     required this.icon,
     required this.text,
@@ -19,6 +20,7 @@ class BuildIconWithText extends StatelessWidget {
 
   Widget buildIconWithText(SvgGenImage icon, String text, BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         icon.svg(colorFilter: _iconColorFilter(context), width: AppConstants.kDefaultSpacing),
         const PrimarySpacing.gapXxs(),
@@ -26,7 +28,6 @@ class BuildIconWithText extends StatelessWidget {
           text,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
-        const PrimarySpacing.gapSm(),
       ],
     );
   }

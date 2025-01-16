@@ -1,5 +1,5 @@
 import 'package:dtt/core/app_config.dart';
-import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/bloc/app_bloc/app_bloc.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/utils/url_lancher.dart';
 import 'package:dtt/generated/l10n.dart';

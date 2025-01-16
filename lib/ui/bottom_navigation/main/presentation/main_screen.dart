@@ -1,8 +1,11 @@
+import 'package:dtt/core/bloc/house_bloc/house_bloc.dart';
+import 'package:dtt/core/bloc/location_bloc/location_bloc.dart';
+import 'package:dtt/core/bloc/location_bloc/location_event.dart';
+import 'package:dtt/core/bloc/location_bloc/location_state.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/generated/assets.gen.dart';
 import 'package:dtt/generated/l10n.dart';
-import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
 import 'package:dtt/ui/bottom_navigation/main/presentation/house_item.dart';
 import 'package:dtt/ui/error/error_screen.dart';
 import 'package:dtt/ui/others/app_bar.dart';
@@ -15,10 +18,10 @@ class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainScreen> createState() => _HouseState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HouseState extends State<MainScreen> {
   late final TextEditingController _controller;
   late final FocusNode _focusNode;
 
@@ -42,11 +45,18 @@ class _MainScreenState extends State<MainScreen> {
       onTap: () {
         _focusNode.unfocus();
       },
-      child: BlocProvider(
-        create: (_) => Injector.instance<MainScreenBloc>()..add(const MainScreenEvent.init()),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => Injector.instance<HouseBloc>()..add(const HouseEvent.init()),
+          ),
+          BlocProvider(
+            create: (_) => Injector.instance<LocationBloc>()..add(GetLocationEvent()),
+          ),
+        ],
         child: Scaffold(
           appBar: const PrimaryAppbar(),
-          body: BlocBuilder<MainScreenBloc, MainScreenState>(
+          body: BlocBuilder<HouseBloc, HouseState>(
             builder: (context, state) => NestedScrollView(
               floatHeaderSlivers: true,
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -76,8 +86,8 @@ class _MainScreenState extends State<MainScreen> {
                                       height: AppConstants.kLargeSpacing,
                                       child: TextFormField(
                                         style: Theme.of(context).textTheme.bodyLarge,
-                                        onChanged: (String str) => Injector.instance<MainScreenBloc>()
-                                            .add(MainScreenEvent.search(phrase: str)),
+                                        onChanged: (String str) =>
+                                            Injector.instance<HouseBloc>().add(HouseEvent.search(phrase: str)),
                                         decoration: InputDecoration(
                                           suffixIconConstraints: const BoxConstraints(
                                             maxHeight: AppConstants.kDefaultSpacing,
@@ -86,8 +96,8 @@ class _MainScreenState extends State<MainScreen> {
                                               ? GestureDetector(
                                                   child: Assets.icons.icClose.svg(),
                                                   onTap: () {
-                                                    Injector.instance<MainScreenBloc>()
-                                                        .add(const MainScreenEvent.search(phrase: ''));
+                                                    Injector.instance<HouseBloc>()
+                                                        .add(const HouseEvent.search(phrase: ''));
                                                     _controller.text = '';
                                                   },
                                                 )
@@ -109,8 +119,7 @@ class _MainScreenState extends State<MainScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: AppConstants.kDefaultSpacing),
                                   child: InkWell(
-                                    onTap: () =>
-                                        Injector.instance<MainScreenBloc>().add(const MainScreenEvent.reSort()),
+                                    onTap: () => Injector.instance<HouseBloc>().add(const HouseEvent.reSort()),
                                     child: Assets.icons.icSort.svg(
                                       height: AppConstants.kDefaultSpacing,
                                       colorFilter: ColorFilter.mode(
@@ -128,8 +137,8 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                 ];
               },
-              body: Builder(
-                builder: (context) {
+              body: BlocBuilder<LocationBloc, LocationState>(
+                builder: (context, locationState) {
                   if (state.isLoading) return const Center(child: PrimaryShimmer());
                   if (state.isError) {
                     return ErrorScreen('${state.apiErrorString ?? S.of(context).error} \n\n Tap here to reload again!');
@@ -137,13 +146,14 @@ class _MainScreenState extends State<MainScreen> {
                   if (state.filteredHouses.isEmpty) return const EmptyScreen();
                   return RefreshIndicator(
                     onRefresh: () async {
-                      Injector.instance<MainScreenBloc>().add(const MainScreenEvent.init());
+                      Injector.instance<HouseBloc>().add(const HouseEvent.init());
                     },
                     child: ListView.builder(
                       itemCount: state.filteredHouses.length,
                       itemBuilder: (_, index) {
                         final house = state.filteredHouses[index];
-                        return HouseItem(house, state.location);
+                        final location = locationState.locationData;
+                        return HouseItem(house, location);
                       },
                     ),
                   );

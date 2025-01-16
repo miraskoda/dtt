@@ -2,21 +2,18 @@ import 'dart:async';
 
 import 'package:dtt/api/models/house.dart';
 import 'package:dtt/api/repository/api_repository.dart';
-import 'package:dtt/services/location_service/location_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:location/location.dart';
 
-part 'main_screen_bloc.freezed.dart';
-part 'main_screen_event.dart';
-part 'main_screen_state.dart';
+part 'house_bloc.freezed.dart';
+part 'house_event.dart';
+part 'house_state.dart';
 
-class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
-  MainScreenBloc({
+class HouseBloc extends Bloc<HouseEvent, HouseState> {
+  HouseBloc({
     required this.apiRepository,
-    required this.locationService,
   }) : super(
-          MainScreenState.init(),
+          HouseState.init(),
         ) {
     on<_Init>(_init);
     on<_Search>(_search);
@@ -24,9 +21,8 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   }
 
   final ApiRepository apiRepository;
-  final LocationService locationService;
 
-  Future<void> _init(_Init e, Emitter<MainScreenState> emit) async {
+  Future<void> _init(_Init e, Emitter<HouseState> emit) async {
     emit(
       state.copyWith(
         isLoading: true,
@@ -49,15 +45,9 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
         ),
       );
     });
-    // location
-    emit(state.copyWith(location: await _getLocation()));
   }
 
-  Future<LocationData?> _getLocation() async {
-    return locationService.getCurrentLocation();
-  }
-
-  Future<void> _search(_Search e, Emitter<MainScreenState> emit) async {
+  Future<void> _search(_Search e, Emitter<HouseState> emit) async {
     final searchText = e.phrase.toLowerCase();
     final filteredHouses = state.housesData.where((house) {
       return house.city.toLowerCase().contains(searchText) ||
@@ -72,7 +62,7 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     );
   }
 
-  Future<void> _reSort(_ReSort e, Emitter<MainScreenState> emit) async {
+  Future<void> _reSort(_ReSort e, Emitter<HouseState> emit) async {
     emit(
       state.copyWith(
         filteredHouses: state.filteredHouses.reversed.toList(),

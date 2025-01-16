@@ -1,5 +1,5 @@
 import 'package:device_frame_plus/device_frame_plus.dart';
-import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/bloc/app_bloc/app_bloc.dart';
 import 'package:dtt/core/bloc_core/ui_status.dart';
 import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/core/router/app_router.dart';
@@ -112,7 +112,7 @@ class _App extends StatelessWidget {
                       constraints: const BoxConstraints(maxWidth: 430, maxHeight: 932),
                       child: Center(
                         child: DeviceFrame(
-                          device: Devices.ios.iPhone14Pro,
+                          device: Devices.ios.iPhone12Mini,
                           screen: child ?? Container(),
                         ),
                       ),

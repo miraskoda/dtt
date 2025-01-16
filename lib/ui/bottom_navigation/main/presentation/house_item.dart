@@ -65,7 +65,8 @@ class HouseItem extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           const Spacer(),
-                          Row(
+                          Wrap(
+                            spacing: AppConstants.kSmallSpacing,
                             children: [
                               BuildIconWithText(
                                 icon: Assets.icons.icBed,

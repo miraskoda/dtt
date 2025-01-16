@@ -1,16 +1,15 @@
-part of 'main_screen_bloc.dart';
+part of 'house_bloc.dart';
 
 @Freezed()
-class MainScreenState with _$MainScreenState {
-  const factory MainScreenState({
+class HouseState with _$HouseState {
+  const factory HouseState({
     @Default(false) bool isLoading,
     @Default(false) bool isError,
     String? apiErrorString,
     @Default([]) List<House> housesData,
     @Default([]) List<House> filteredHouses,
     @Default('') String searchText,
-    LocationData? location,
-  }) = _MainScreenState;
+  }) = _HouseState;
 
-  factory MainScreenState.init() => const MainScreenState();
+  factory HouseState.init() => const HouseState();
 }

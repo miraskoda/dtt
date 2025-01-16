@@ -1,5 +1,5 @@
 import 'package:dtt/api/models/house.dart';
-import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/bloc/app_bloc/app_bloc.dart';
 import 'package:dtt/ui/bottom_navigation/info/info_screen.dart';
 import 'package:dtt/ui/bottom_navigation/main/presentation/main_screen.dart';
 import 'package:dtt/ui/bottom_navigation/nested_navigation.dart';

@@ -26,7 +26,7 @@ extension DttDistanceMeasure on LocationData {
     required double latitude,
     required double longitude,
   }) {
-    return '${_calculateDistance(latitude, longitude, this.longitude!, this.longitude!).toStringAsFixed(0)}km';
+    return '${_calculateDistance(latitude, longitude, this.latitude!, this.longitude!).toStringAsFixed(0)}km';
   }
 }
 

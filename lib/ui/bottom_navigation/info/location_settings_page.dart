@@ -1,6 +1,7 @@
-import 'package:dtt/ui/bottom_navigation/info/application/location_bloc.dart';
-import 'package:dtt/ui/bottom_navigation/info/application/location_event.dart';
-import 'package:dtt/ui/bottom_navigation/info/application/location_state.dart';
+import 'package:dtt/core/bloc/location_bloc/location_bloc.dart';
+import 'package:dtt/core/bloc/location_bloc/location_event.dart';
+import 'package:dtt/core/bloc/location_bloc/location_state.dart';
+import 'package:dtt/core/injector/injector.dart';
 import 'package:dtt/ui/others/primary_spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,7 @@ class LocationSettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LocationBloc()..add(CheckLocationStatus()),
+      create: (context) => Injector.instance<LocationBloc>()..add(CheckLocationStatus()),
       child: BlocBuilder<LocationBloc, LocationState>(
         builder: (context, state) {
           if (state is LocationLoading) {

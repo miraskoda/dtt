@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:dtt/api/models/house.dart';
+import 'package:dtt/core/bloc/location_bloc/location_bloc.dart';
+import 'package:dtt/core/bloc/location_bloc/location_state.dart';
 import 'package:dtt/core/constants/constants.dart';
 import 'package:dtt/core/extensions/app_extensions.dart';
 import 'package:dtt/core/injector/injector.dart';
@@ -8,7 +10,6 @@ import 'package:dtt/core/utils/map_launcher.dart';
 import 'package:dtt/generated/assets.gen.dart';
 import 'package:dtt/generated/l10n.dart';
 import 'package:dtt/theme/app_themes.dart';
-import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
 import 'package:dtt/ui/others/build_icon_with_text.dart';
 import 'package:dtt/ui/others/map_widget.dart';
 import 'package:dtt/ui/others/primary_padding.dart';
@@ -33,7 +34,7 @@ class DetailScreen extends StatelessWidget {
         fit: BoxFit.cover,
       ),
     );
-    final state = Injector.instance<MainScreenBloc>().state;
+    final state = Injector.instance<LocationBloc>().state;
     return Scaffold(
       body: CustomScrollView(
         clipBehavior: Clip.none,
@@ -97,33 +98,29 @@ class DetailScreen extends StatelessWidget {
                             house.price.asDTTPrice(),
                             style: Theme.of(context).textTheme.displayLarge,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Wrap(
+                            spacing: AppConstants.kSmallSpacing,
                             children: [
-                              Row(
-                                children: [
-                                  BuildIconWithText(
-                                    icon: Assets.icons.icBed,
-                                    text: '${house.bedrooms}',
-                                  ),
-                                  BuildIconWithText(
-                                    icon: Assets.icons.icBath,
-                                    text: '${house.bathrooms}',
-                                  ),
-                                  BuildIconWithText(
-                                    icon: Assets.icons.icLayers,
-                                    text: '${house.size} m²',
-                                  ),
-                                  if (state.location != null)
-                                    BuildIconWithText(
-                                      icon: Assets.icons.icLocation,
-                                      text: state.location!.getDistance(
-                                        latitude: house.latitude,
-                                        longitude: house.longitude,
-                                      ),
-                                    ),
-                                ],
+                              BuildIconWithText(
+                                icon: Assets.icons.icBed,
+                                text: '${house.bedrooms}',
                               ),
+                              BuildIconWithText(
+                                icon: Assets.icons.icBath,
+                                text: '${house.bathrooms}',
+                              ),
+                              BuildIconWithText(
+                                icon: Assets.icons.icLayers,
+                                text: '${house.size} m²',
+                              ),
+                              if (state is LocationDataState)
+                                BuildIconWithText(
+                                  icon: Assets.icons.icLocation,
+                                  text: state.locationData!.getDistance(
+                                    latitude: house.latitude,
+                                    longitude: house.longitude,
+                                  ),
+                                ),
                             ],
                           ),
                         ],

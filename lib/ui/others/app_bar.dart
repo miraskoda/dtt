@@ -2,6 +2,7 @@ import 'package:dtt/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryAppbar extends StatelessWidget implements PreferredSizeWidget {
+  /// DTT primary app bar to reuse throught app
   const PrimaryAppbar({
     super.key,
   });

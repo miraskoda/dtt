@@ -4,18 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-class MapWidget extends StatefulWidget {
+class MapWidget extends StatelessWidget {
+  /// Genetral DTT map widget for reuse
   const MapWidget({
     required this.coordinates,
     super.key,
   });
   final LatLng coordinates;
 
-  @override
-  State<MapWidget> createState() => _MapWidgetState();
-}
-
-class _MapWidgetState extends State<MapWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,7 +20,7 @@ class _MapWidgetState extends State<MapWidget> {
         borderRadius: BorderRadius.circular(AppConstants.kNormalBorderRadius),
         child: FlutterMap(
           options: MapOptions(
-            initialCenter: widget.coordinates,
+            initialCenter: coordinates,
             initialZoom: 10,
           ),
           children: [
@@ -36,7 +32,7 @@ class _MapWidgetState extends State<MapWidget> {
                 Marker(
                   width: 80,
                   height: 80,
-                  point: widget.coordinates,
+                  point: coordinates,
                   child: const Icon(
                     Icons.location_pin,
                     size: 40,

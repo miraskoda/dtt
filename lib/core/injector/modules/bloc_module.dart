@@ -1,6 +1,7 @@
-import 'package:dtt/core/bloc/app_bloc.dart';
+import 'package:dtt/core/bloc/app_bloc/app_bloc.dart';
+import 'package:dtt/core/bloc/house_bloc/house_bloc.dart';
+import 'package:dtt/core/bloc/location_bloc/location_bloc.dart';
 import 'package:dtt/core/injector/injector.dart';
-import 'package:dtt/ui/bottom_navigation/main/application/main_screen_bloc.dart';
 
 class BlocModule {
   BlocModule._();
@@ -15,9 +16,13 @@ class BlocModule {
           logService: injector(),
         ),
       )
-      ..registerLazySingleton<MainScreenBloc>(
-        () => MainScreenBloc(
+      ..registerLazySingleton<HouseBloc>(
+        () => HouseBloc(
           apiRepository: injector(),
+        ),
+      )
+      ..registerLazySingleton<LocationBloc>(
+        () => LocationBloc(
           locationService: injector(),
         ),
       );
