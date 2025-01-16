@@ -127,6 +127,7 @@ class AppThemes {
     brightness: Brightness.light,
     primaryColor: _lightPrimaryColor,
     scaffoldBackgroundColor: _lightBackgroundColor,
+    primaryColorDark: brandDarkGray,
     navigationBarTheme: const NavigationBarThemeData(
       height: 40,
       backgroundColor: Colors.white,
@@ -184,6 +185,7 @@ class AppThemes {
     brightness: Brightness.dark,
     primaryColor: _darkPrimaryColor,
     scaffoldBackgroundColor: _darkBackgroundColor,
+    primaryColorDark: brandLightColor,
     appBarTheme: AppBarTheme(
       color: _darkBackgroundColor,
       iconTheme: const IconThemeData(color: _darkIconColor),
